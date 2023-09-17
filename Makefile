@@ -3,7 +3,7 @@ BensVersion: main.cpp
 	arch -x86_64 clang++ main.cpp -I"./SFML/2.6.0/include" -L"./SFML/2.6.0/lib" -lsfml-graphics -lsfml-window -lsfml-system
 
 
-CostaJamesVersion: main.cpp
+KostaJamesVersion: main.cpp
 	clang++ main.cpp -I"./SFML/2.6.0/include" -L"./SFML/2.6.0/lib" -lsfml-graphics -lsfml-window -lsfml-system
 
 
