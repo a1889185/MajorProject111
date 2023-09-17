@@ -1,7 +1,10 @@
-make: main.cpp
+BensVersion: main.cpp
+ # arch -x86_64 is just to make it compatible with my computer.
 	arch -x86_64 clang++ main.cpp -I"./SFML/2.6.0/include" -L"./SFML/2.6.0/lib" -lsfml-graphics -lsfml-window -lsfml-system
 
 
+CostaJamesVersion: main.cpp
+	clang++ main.cpp -I"./SFML/2.6.0/include" -L"./SFML/2.6.0/lib" -lsfml-graphics -lsfml-window -lsfml-system
 
 
 
@@ -15,6 +18,7 @@ make: main.cpp
 
 
 
+# ---- OLD SHIT DONT WORRY ABOUT IT ----
 
 
 

@@ -1,6 +1,5 @@
 // JUST TO TEST SFML.
 
-// doesnt matter if it has red swiggly lines, should still compile.
 #include <SFML/Graphics.hpp>
 
 int main() {
