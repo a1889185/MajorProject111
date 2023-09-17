@@ -2,6 +2,8 @@
 
 # With the sfml library shit its probably going to be stored in different locations for each of our computers, so we should have seperate make commands.
 # I (Ben) used homebrew on mac to download it to a good place. Bellow points to the directories of it on my computer for the complier.
+# If you use homebrew to instal sfml the commands ive made should work.
+
 
 
 
@@ -13,7 +15,7 @@ BensVersion: main.cpp
 
 
 KostasVersion: main.cpp
-	clang++ main.cpp -I"      " -L"       " -lsfml-graphics -lsfml-window -lsfml-system
+	clang++ main.cpp -I"/opt/homebrew/Cellar/sfml/2.6.0/include" -L"/opt/homebrew/Cellar/sfml/2.6.0/lib" -lsfml-graphics -lsfml-window -lsfml-system
 
 JamesVersion: main.cpp
-	clang++ main.cpp -I"         " -L"        " -lsfml-graphics -lsfml-window -lsfml-system
+	clang++ main.cpp -I"/opt/homebrew/Cellar/sfml/2.6.0/include" -L"/opt/homebrew/Cellar/sfml/2.6.0/lib" -lsfml-graphics -lsfml-window -lsfml-system
