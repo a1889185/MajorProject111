@@ -20,6 +20,20 @@ class MoveableEntity : public Entity {
  public:
   MoveableEntity();
   MoveableEntity(int _xPos, int _yPos, int damage, int health, int size);
+
+  // methods.
+
+  void setPosX(int Xpos);
+  void setPosY(int Ypos);
+
+  virtual void setHealth(int health);
+  virtual void setDamage(int damage);
+
+  virtual int getHealth();
+  virtual int getDamage();
+
+  virtual void move(Map* _map, Event input);
+  virtual void attackOpponent(int opponentPosX, int opponentPosY);
 };
 
 #endif  // MOVEABLEENTITY_H
