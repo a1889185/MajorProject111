@@ -4,17 +4,18 @@
 
 MoveableEntity::MoveableEntity() {}
 MoveableEntity::MoveableEntity(int _xPos, int _yPos, int damage, int health,
-                               int size) {}
+                               int size)
+    : xPos(_xPos), yPos(_yPos), damage(damage), health(health) {}
 
 // methods.
-void MoveableEntity::setPosX(int Xpos) {}
-void MoveableEntity::setPosY(int Ypos) {}
+void MoveableEntity::setPosX(int _xPos) { this->xPos = _xPos; }
+void MoveableEntity::setPosY(int _yPos) { this->yPos = _yPos; }
 
-void MoveableEntity::setHealth(int health) {}
-void MoveableEntity::setDamage(int damage) {}
+void MoveableEntity::setHealth(int _health) { this->health = _health; }
+void MoveableEntity::setDamage(int _damage) { this->damage = _damage; }
 
-int MoveableEntity::getHealth() {}
-int MoveableEntity::getDamage() {}
+int MoveableEntity::getHealth() { return health; }
+int MoveableEntity::getDamage() { return damage; }
 
 void MoveableEntity::move(Map* _map, Event input) {}
 void MoveableEntity::attackOpponent(int opponentPosX, int opponentPosY) {}

@@ -24,8 +24,8 @@ class MoveableEntity : public Entity {
 
   // methods.
 
-  void setPosX(int Xpos);
-  void setPosY(int Ypos);
+  void setPosX(int _xPos);
+  void setPosY(int _yPos);
 
   virtual void setHealth(int health);
   virtual void setDamage(int damage);
