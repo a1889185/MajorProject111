@@ -1,9 +1,2 @@
-HEllo world xoxoxo
-
-Can you all see this?
-
-yes i can - ben
-
-yes i can - kosta
-
-Where is our project plan? 
+int u = 42;
+int window_size = 20 * u;

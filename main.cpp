@@ -2,15 +2,21 @@
 
 #include <SFML/Graphics.hpp>
 
+int u = 42;
+int window_size = 20 * u;
+using namespace sf;
+
 int main() {
-  sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-  sf::CircleShape shape(100.f);
-  shape.setFillColor(sf::Color::Green);
+  RenderWindow window(VideoMode(window_size, window_size), "SFML works!");
+  RectangleShape shape(Vector2f(u, u));
+  shape.setFillColor(Color::Green);
+
+  shape.setPosition(Vector2f(0, 0));
 
   while (window.isOpen()) {
-    sf::Event event;
+    Event event;
     while (window.pollEvent(event)) {
-      if (event.type == sf::Event::Closed) window.close();
+      if (event.type == Event::Closed) window.close();
     }
 
     window.clear();
