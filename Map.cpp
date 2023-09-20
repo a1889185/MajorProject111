@@ -11,4 +11,5 @@ Map::Map() {}
 int[42][42] Map::generateMap() {}
 
 //  set allWalls  with positions based on matrix of walls
-void Map::setWallPostions(int[64][64] _matrixOfWalls) {}
+void Map::setWalls(*int[64][64] _matrixOfWalls) {}
+NonMoveableEntity** Map::getWalls() {}
