@@ -38,6 +38,7 @@ class Map {
 
   std::string getName();
   int getID();
+  int[42][42] getMapMatrix();
 };
 
 #endif  // MAP_H
