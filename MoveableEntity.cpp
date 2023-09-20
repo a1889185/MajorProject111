@@ -1,8 +1,14 @@
 #include "MoveableEntity.h"
+#include "Entity.h"
 
 #include "Map.h"
 
-MoveableEntity::MoveableEntity() {}
+MoveableEntity::MoveableEntity() : Entity() {
+  this->damage = 0;
+  this->health = 0;
+  this->size = 0;
+}
+
 MoveableEntity::MoveableEntity(int _xPos, int _yPos, int damage, int health,
                                int size)
     : xPos(_xPos), yPos(_yPos), damage(damage), health(health) {}

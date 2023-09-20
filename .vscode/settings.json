@@ -1,5 +1,8 @@
 {
   "files.associations": {
-    "ios": "cpp"
+    "ios": "cpp",
+    "__tree": "cpp",
+    "map": "cpp",
+    "__locale": "cpp"
   }
 }
