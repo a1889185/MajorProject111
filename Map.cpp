@@ -46,6 +46,6 @@ void Map::setNumWalls() {
   }
 }
 
-// set allWalls with positions based on matrix of walls
+// set allWalls with positions based on mapMatrix
 void Map::setWalls() {}
 NonMoveableEntity** Map::getWalls() { return this->allWalls; }

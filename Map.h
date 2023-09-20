@@ -8,30 +8,25 @@
 
 class Map {
  protected:
-  //  matrix of 1's - walls, and 0's - paths
+  int id;
+  std::string name;
+  // matrix of 1's - walls, and 0's - paths
   int mapSize = 42;
   int** mapMatrix;
   int mapDensity;
-
   // array of walls to be displayed.
   int numWalls;
   NonMoveableEntity** allWalls;
 
-  int id;
-  std::string name;
-
   // methods.
   // generate new mapMatrix of 1's - walls, and 0's - paths
   int[42][42] generateMap();
-
   void setNumWalls();
   void setWalls();
   NonMoveableEntity** getWalls();
 
  public:
-  // should call generateMap and setWalls.
-  Map();
-  // name | id | density;
+  Map();  // should call generateMap and setWalls.
   Map(std::string _name, int _id, int _mapDensity);
   ~Map();
 
