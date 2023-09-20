@@ -11,7 +11,9 @@ class Map {
   //  matrix of 1's - walls, and 0's - paths
   int mapSize = 42;
   int** mapMatrix;
+  int mapDensity;
 
+  // array of walls to be displayed.
   int numWalls;
   NonMoveableEntity** allWalls;
 
@@ -19,21 +21,28 @@ class Map {
   std::string name;
 
   // methods.
-  void setNumWalls(*int[42][42] mapMatrix);
-
- public:
-  // should call generateMap and setWallPositions.
-  Map();
-  ~Map();
-
-  // generate matrix of 1's - walls, and 0's - paths
+  // generate new mapMatrix of 1's - walls, and 0's - paths
   int[42][42] generateMap();
 
-  //  set allWalls  with positions based on mapMatrix
-  void setWalls(*int[42][42] mapMatrix);
-  NonMoveableEntity** getWalls(int numWalls);
+  void setNumWalls();
+  void setWalls();
+  NonMoveableEntity** getWalls();
+
+ public:
+  // should call generateMap and setWalls.
+  Map();
+  // name | id | density;
+  Map(std::string _name, int _id, int _mapDensity);
+  ~Map();
 
   void mapDisplay();
+
+  void setName(std::string _name);
+  void setID(int _id);
+  void setMapDensity(int _mapDensity);
+
+  std::string getName();
+  int getID();
 };
 
 #endif  // MAP_H
