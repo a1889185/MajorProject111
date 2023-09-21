@@ -5,7 +5,8 @@ Player::Player() : MoveableEntity() {}
 Player::Player(int _xPos, int _yPos, int damage, int health, int size)
     : MoveableEntity(_xPos, _yPos, damage, health, size) {}
 
-void Player::performAction(char action) { // Function to handle player actions (user inputs)
+void Player::performAction(
+    char action) {  // Function to handle player actions (user inputs)
   // user inputs
   char move_up = 'W';     // or up arrow key
   char move_down = 'S';   // or down arrow key
