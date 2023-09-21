@@ -5,7 +5,7 @@
 # If you use homebrew to instal sfml the commands ive made should work.
 
 
-BensVersion: test1.cpp
+BensVersion: main.cpp
 # arch -x86_64 is just for my computer to make it compatible.
 # -I"/sfml/include/directory"
 # -L"/sfml/library/directory" 

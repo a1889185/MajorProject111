@@ -12,8 +12,8 @@ class Entity {
 
   ~Entity();
 
-  int getPosX();
-  int getPosY();
+  virtual int getPosX();
+  virtual int getPosY();
 };
 
 #endif  // ENTITY
