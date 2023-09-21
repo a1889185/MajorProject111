@@ -6,6 +6,7 @@
 #include "Entity.h"
 #include "MoveableEntity.h"
 // #include "Map.h"
+#include "Enemy.h"
 
 class Player : public MoveableEntity {
  private:
@@ -13,13 +14,12 @@ class Player : public MoveableEntity {
 
  public:
   Player(); 
-  Player(int _xPos, int _yPos, int damage, int health, int size); 
-
-  void performAction(char action); 
-
-  void move(Map* _map, Event input); 
-
-  void attackOpponent(int opponentPosX, int opponentPosY); 
+  Player(int _xPos, int _yPos, int damage, int health, int size);
+  
+  void attackOpponent(Enemy* opponent);
+  void performAction(char action);
+  
+  // void move(Map* _map, Event input);
 };
 
 #endif

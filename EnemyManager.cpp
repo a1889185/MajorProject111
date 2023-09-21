@@ -24,7 +24,7 @@ void EnemyManager::addEnemy(int xPos, int yPos) {
 
 void EnemyManager::removeEnemy(int xPos, int yPos) {
   for (int i = 0; i < numEnemies; i++) {
-    if (activeEnemies[i]->xPos == x && activeEnemies[i]->yPos == y) {
+    if (activeEnemies[i]->xPos == xPos && activeEnemies[i]->yPos == yPos) {
       // Remove the enemy and shift remaining enemies in the array
       delete activeEnemies[i];
       for (int j = i; j < numEnemies - 1; j++) {

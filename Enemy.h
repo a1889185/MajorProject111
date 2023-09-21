@@ -5,7 +5,8 @@
 
 #include "Entity.h"
 #include "MoveableEntity.h"
-// #include "Map.h"
+#include "Map.h"
+#include "Player.h"
 
 using namespace sf;
 
@@ -18,9 +19,8 @@ class Enemy : public MoveableEntity {
   Enemy();
   Enemy(int _xPos, int _yPos, int damage, int health, int size);
 
-  void advancePos(map:*Map, playerPosX:int, playerPosY:int); 
-  void attackOpponent(int opponentPosX, int opponentPosY); 
-
+  void advancePos(Map* map, char action); 
+  void attackOpponent(Player* player); 
 }; 
 
 #endif
