@@ -5,11 +5,15 @@
 # If you use homebrew to instal sfml the commands ive made should work.
 
 
-BensVersion: main.cpp
+BensVersion: test1.cpp
 # arch -x86_64 is just for my computer to make it compatible.
 # -I"/sfml/include/directory"
 # -L"/sfml/library/directory" 
-	arch -x86_64 clang++ main.cpp -o main -I"/opt/local/Homebrew/Cellar/sfml/2.6.0/include" -L"/usr/local/Homebrew/Cellar/sfml/2.6.0/lib" -lsfml-graphics -lsfml-window -lsfml-system
+	arch -x86_64 clang++ main.cpp Entity.cpp NonMoveableEntity.cpp Map.cpp \
+	\-o main \
+	\-I"/usr/local/Homebrew/Cellar/sfml/2.6.0/include" -L"/usr/local/Homebrew/Cellar/sfml/2.6.0/lib" -lsfml-graphics -lsfml-window -lsfml-system
+
+
 
 KostasVersion: main.cpp
 	clang++ main.cpp -o main -I"/opt/homebrew/Cellar/sfml/2.6.0/include" -L"/opt/homebrew/Cellar/sfml/2.6.0/lib" -lsfml-graphics -lsfml-window -lsfml-system
