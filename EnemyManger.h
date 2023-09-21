@@ -16,8 +16,7 @@ class EnemyManager {
 
   void addEnemy(int xPos, int yPos); 
   void removeEnemy(int xPos, int yPos); 
-
-  void attackOpponent(int opponentPosX, int opponentPosY); 
+  
   void printActiveEnemies(); 
 
   ~EnemyManager(); 

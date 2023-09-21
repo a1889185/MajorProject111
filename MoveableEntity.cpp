@@ -11,7 +11,7 @@ MoveableEntity::MoveableEntity() : Entity() {
 
 MoveableEntity::MoveableEntity(int _xPos, int _yPos, int damage, int health,
                                int size)
-    : xPos(_xPos), yPos(_yPos), damage(damage), health(health) {}
+    : xPos(_xPos), yPos(_yPos), damage(damage), health(health), size(size) {}
 
 // methods.
 void MoveableEntity::setPosX(int _xPos) { this->xPos = _xPos; }

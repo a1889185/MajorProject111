@@ -5,21 +5,22 @@
 
 #include "Entity.h"
 #include "MoveableEntity.h"
-// #include "Map.h"
+#include "Map.h"
+#include "Enemy.h"
+
+using namespace sf;
 
 class Player : public MoveableEntity {
+
  private:
   Sprite appearance;
 
  public:
   Player(); 
-  Player(int _xPos, int _yPos, int damage, int health, int size); 
-
-  void performAction(char action); 
-
-  void move(Map* _map, Event input); 
-
-  void attackOpponent(int opponentPosX, int opponentPosY); 
+  Player(int _xPos, int _yPos, int damage, int health, int size);
+  
+  void attackOpponent(Enemy* opponent);
+  void performAction(Map* map, char action, Enemy* enemies, int numEnemies); 
 };
 
 #endif
