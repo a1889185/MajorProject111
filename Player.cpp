@@ -33,11 +33,11 @@ void Player::performAction(Map* map, char action, Enemy* enemies,
   char move_right = 'D';  // or right arrow key
   char move_wait = ' ';   // space bar for waiting
 
-// Initialize a flag to check if a position contains an enemy
-int isEnemyPosition = 0;
-
   switch (action) {
     case move_up:
+
+      // Initialize a flag to check if a position contains an enemy
+      int isEnemyPosition = 0;
 
       // Check if moving up is valid (not into a wall or enemy)
       for (int i = 0; i < numEnemies; i++) {
@@ -57,6 +57,9 @@ int isEnemyPosition = 0;
       break;
 
     case move_down:
+      
+      // Initialize a flag to check if a position contains an enemy
+      int isEnemyPosition = 0;
 
       // Check if moving down is valid (not into a wall or enemy)
       for (int i = 0; i < numEnemies; i++) {
@@ -77,6 +80,9 @@ int isEnemyPosition = 0;
 
     case move_left:
 
+      // Initialize a flag to check if a position contains an enemy
+      int isEnemyPosition = 0;
+
       // Check if moving left is valid (not into a wall or enemy)
       for (int i = 0; i < numEnemies; i++) {
         if (xPos - 1 == xPos_Enemies[i]) {
@@ -95,6 +101,9 @@ int isEnemyPosition = 0;
       break;
 
     case move_right:
+
+      // Initialize a flag to check if a position contains an enemy
+      int isEnemyPosition = 0;
 
       // Check if moving right is valid (not into a wall or enemy)
       for (int i = 0; i < numEnemies; i++) {
@@ -134,6 +143,6 @@ int isEnemyPosition = 0;
       break;
   }
 
-  delete xPos_Enemies;
-  delete yPos_Enemies;
+  delete[] xPos_Enemies;
+  delete[] yPos_Enemies;
 }
