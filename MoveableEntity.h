@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Entity.h"
-// #include "Map.h"
+#include "Map.h"
 
 using namespace sf;
 
@@ -12,7 +12,7 @@ class MoveableEntity : public Entity {
  protected:
   bool playerFlag;
 
-  int size;
+  int size;  // 42.
   RectangleShape shape;
 
   int damage;
@@ -33,7 +33,10 @@ class MoveableEntity : public Entity {
   virtual int getHealth();
   virtual int getDamage();
 
-  virtual void move(Map* _map, Event input);
+  int getPosX();
+  int getPosY();
+
+  virtual void move(Map* map, Event input);
   virtual void attackOpponent(int opponentPosX, int opponentPosY);
 };
 

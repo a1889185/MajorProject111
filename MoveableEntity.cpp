@@ -1,6 +1,6 @@
 #include "MoveableEntity.h"
-#include "Entity.h"
 
+#include "Entity.h"
 #include "Map.h"
 
 MoveableEntity::MoveableEntity() : Entity() {
@@ -22,6 +22,9 @@ void MoveableEntity::setDamage(int _damage) { this->damage = _damage; }
 
 int MoveableEntity::getHealth() { return health; }
 int MoveableEntity::getDamage() { return damage; }
+
+int MoveableEntity::getPosX() { return xPos; }
+int MoveableEntity::getPosY() { return yPos; }
 
 void MoveableEntity::move(Map* _map, Event input) {}
 void MoveableEntity::attackOpponent(int opponentPosX, int opponentPosY) {}
