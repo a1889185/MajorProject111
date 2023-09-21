@@ -33,68 +33,83 @@ void Player::performAction(Map* map, char action, Enemy* enemies,
   char move_right = 'D';  // or right arrow key
   char move_wait = ' ';   // space bar for waiting
 
+// Initialize a flag to check if a position contains an enemy
+int isEnemyPosition = 0;
+
   switch (action) {
     case move_up:
+
       // Check if moving up is valid (not into a wall or enemy)
-      // If valid, update player's position
-      // If there's an enemy, attack it Otherwise, do nothing
       for (int i = 0; i < numEnemies; i++) {
-        if (map[xPos][yPos - 1] != 1 && yPos - 1 != yPos_Enemies[i]) {
-          setPosY(yPos - 1);  // move player up matrix (increase y position)
-        } else if (yPos - 1 == yPos_Enemies[i]) {
+        if (yPos - 1 == yPos_Enemies[i]) {
+          // yPos - 1 is an enemy position
+          isEnemyPosition = 1;
           attackOpponent();  // attack nearby enemy
           setPosY(yPos - 1);
-        } else {
-          setPosY(yPos);  // player remains stationary
+          break;  // Break out of loop after attacking enemy
         }
+      }
+
+      // If yPos - 1 is not an enemy position and not a wall, move player up
+      if (!isEnemyPosition && map[xPos][yPos - 1] != 1) {
+        setPosY(yPos - 1);  // move player up matrix (increase y position)
       }
       break;
 
     case move_down:
+
       // Check if moving down is valid (not into a wall or enemy)
-      // If valid, update player's position
-      // If there's an enemy, attack it Otherwise, do nothing
       for (int i = 0; i < numEnemies; i++) {
-        if (map[xPos][yPos + 1] != 1 && yPos + 1 != yPos_Enemies[i]) {
-          setPosY(yPos + 1);  // move player down matrix (decrease y position)
-        } else if (yPos + 1 == yPos_Enemies[i]) {
+        if (yPos + 1 == yPos_Enemies[i]) {
+          // yPos + 1 is an enemy position
+          isEnemyPosition = 1;
           attackOpponent();  // attack nearby enemy
           setPosY(yPos + 1);
-        } else {
-          setPosY(yPos);  // player remains stationary
+          break;  // Break out of loop after attacking enemy
         }
+      }
+
+      // If yPos + 1 is not an enemy position and not a wall, move player down
+      if (!isEnemyPosition && map[xPos][yPos + 1] != 1) {
+        setPosY(yPos + 1);  // move player down matrix (decrease y position)
       }
       break;
 
     case move_left:
+
       // Check if moving left is valid (not into a wall or enemy)
-      // If valid, update player's position
-      // If there's an enemy, attack it Otherwise, do nothing
       for (int i = 0; i < numEnemies; i++) {
-        if (map[xPos - 1][yPos] != 1 && xPos - 1 != xPos_Enemies[i]) {
-          setPosX(xPos - 1);  // move player left (decrease x position)
-        } else if (xPos - 1 == xPos_Enemies[i]) {
+        if (xPos - 1 == xPos_Enemies[i]) {
+          // xPos - 1 is an enemy position
+          isEnemyPosition = 1;
           attackOpponent();  // attack nearby enemy
-          setPosX(xPos - 1);
-        } else {
-          setPosX(xPos); // player remains stationary
+          setPosY(xPos - 1);
+          break;  // Break out of loop after attacking enemy
         }
+      }
+
+      // If xPos - 1 is not an enemy position and not a wall, move player left
+      if (!isEnemyPosition && map[xPos - 1][yPos] != 1) {
+        setPosY(xPos - 1);  // move player left (decrease x position)
       }
       break;
 
     case move_right:
+
       // Check if moving right is valid (not into a wall or enemy)
-      // If valid, update player's position
-      // If there's an enemy, attack it Otherwise, do nothing
       for (int i = 0; i < numEnemies; i++) {
-        if (map[xPos + 1][yPos] != 1 && xPos + 1 != xPos_Enemies[i]) {
-          setPosX(xPos + 1);  // move player right (increase x position)
-        } else if (xPos + 1 == xPos_Enemies[i]) {
+        if (xPos + 1 == xPos_Enemies[i]) {
+          // xPos + 1 is an enemy position
+          isEnemyPosition = 1;
           attackOpponent();  // attack nearby enemy
-          setPosX(xPos + 1);
-        } else {
-          setPosX(xPos); // player remains stationary
+          setPosY(xPos + 1);
+          break;  // Break out of loop after attacking enemy
         }
+      }
+
+      // If xPos + 1 is not an enemy position and not a wall, move player right
+      if (!isEnemyPosition && map[xPos + 1][yPos] != 1) {
+        setPosY(xPos + 1);  // move player right (increase x position)
       }
       break;
 
@@ -118,4 +133,7 @@ void Player::performAction(Map* map, char action, Enemy* enemies,
                 << "." << std::endl;
       break;
   }
+
+  delete xPos_Enemies;
+  delete yPos_Enemies;
 }
