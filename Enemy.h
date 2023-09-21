@@ -18,9 +18,9 @@ class Enemy : public MoveableEntity {
  public:
   Enemy();
   Enemy(int _xPos, int _yPos, int damage, int health, int size);
-
-  void advancePos(Map* map, char action); 
+  
   void attackOpponent(Player* player); 
+  void advancePos(Map* map, char action); 
 }; 
 
 #endif
