@@ -15,7 +15,7 @@ int windowSize = 20 * u;
 
 int main() {
   srand((time(nullptr)));
-  RenderWindow window(VideoMode(windowSize, windowSize), "ROUGE");
+  RenderWindow window(VideoMode(windowSize, windowSize), "Rogue");
 
   // Generate random map with densisty: 1000=not many paths, 1=allpaths.
   Map map1(1000);

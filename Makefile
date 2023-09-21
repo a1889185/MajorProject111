@@ -19,4 +19,4 @@ KostasVersion: main.cpp
 	clang++ main.cpp -o main -I"/opt/homebrew/Cellar/sfml/2.6.0/include" -L"/opt/homebrew/Cellar/sfml/2.6.0/lib" -lsfml-graphics -lsfml-window -lsfml-system
 
 JamesVersion: main.cpp
-	clang++ main.cpp -o main -I"/opt/homebrew/Cellar/sfml/2.6.0/include" -L"/opt/homebrew/Cellar/sfml/2.6.0/lib" -lsfml-graphics -lsfml-window -lsfml-system
+	clang++ main.cpp Entity.cpp NonMoveableEntity.cpp Map.cpp -o main -I"/usr/local/Cellar/sfml/2.6.0/include" -L"/usr/local/Cellar/sfml/2.6.0/lib" -lsfml-graphics -lsfml-window -lsfml-system
