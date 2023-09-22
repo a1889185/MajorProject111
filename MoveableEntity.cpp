@@ -30,7 +30,7 @@ int MoveableEntity::getPosY() { return yPos; }
 
 void MoveableEntity::attackOpponent(int opponentPosX, int opponentPosY) {}
 
-bool MoveableEntity::move(Map* _map, std::String direction) {
+bool MoveableEntity::move(Map* map, std::String direction) {
   bool validMove = 1;
   // 0=up,1=right,2=down,3=left.
   int surroundings[4];
