@@ -1,4 +1,6 @@
 main
 *.exe
 *.a
-.vscode/
+
+settings.json
+c_cpp_properties.json
