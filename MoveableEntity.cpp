@@ -1,5 +1,7 @@
 #include "MoveableEntity.h"
 
+#include <string>
+
 #include "Entity.h"
 #include "Map.h"
 
@@ -26,5 +28,44 @@ int MoveableEntity::getDamage() { return damage; }
 int MoveableEntity::getPosX() { return xPos; }
 int MoveableEntity::getPosY() { return yPos; }
 
-void MoveableEntity::move(Map* _map, Event input) {}
 void MoveableEntity::attackOpponent(int opponentPosX, int opponentPosY) {}
+
+bool MoveableEntity::move(Map* _map, std::String direction) {
+  bool validMove = 1;
+  // 0=up,1=right,2=down,3=left.
+  int surroundings[4];
+  surroundings[0] = (*map)[yPos - 1][xPos];  // above
+  surroundings[1] = (*map)[yPos][xPos + 1];  // to right
+  surroundings[2] = (*map)[yPos + 1][xPos];  // bellow
+  surroundings[3] = (*map)[yPos][xPos - 1];  // to left
+
+  if (!direction.compare("up")) {
+    if (surroundings[0] == 0) {
+      yPos--;
+    } else {
+      validMove = 0;
+    }
+  } else if (!direction.compare("right")) {
+    if (surroundings[0] == 0) {
+      xPos++;
+    } else {
+      validMove = 0;
+    }
+  } else if (!direction.compare("down")) {
+    if (surroundings[0] == 0) {
+      yPos++;
+    } else {
+      validMove = 0;
+    }
+  } else if (!direction.compare("left")) {
+    if (surroundings[0] == 0) {
+      xPos--;
+    } else {
+      validMove = 0;
+    }
+  } else {
+    validMove = 0;
+  }
+
+  return validMove;
+}

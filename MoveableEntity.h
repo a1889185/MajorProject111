@@ -2,6 +2,7 @@
 #define MOVEABLEENTITY_H
 
 #include <SFML/Graphics.hpp>
+#include <string>
 
 #include "Entity.h"
 #include "Map.h"
@@ -36,7 +37,8 @@ class MoveableEntity : public Entity {
   int getPosX();
   int getPosY();
 
-  virtual void move(Map* map, Event input);
+  // return 0 if not valid move. Directions can be: "up" "left" "right" "down"
+  bool move(Map* map, std::String direction);
   virtual void attackOpponent(int opponentPosX, int opponentPosY);
 };
 
