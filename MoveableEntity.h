@@ -38,7 +38,7 @@ class MoveableEntity : public Entity {
   int getPosY();
 
   // return 0 if not valid move. Directions can be: "up" "left" "right" "down"
-  bool move(Map* map, std::String direction);
+  bool move(Map* map, std::string direction);
   virtual void attackOpponent(int opponentPosX, int opponentPosY);
 };
 
