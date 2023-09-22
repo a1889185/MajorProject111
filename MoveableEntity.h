@@ -2,9 +2,10 @@
 #define MOVEABLEENTITY_H
 
 #include <SFML/Graphics.hpp>
+#include <string>
 
 #include "Entity.h"
-// #include "Map.h"
+#include "Map.h"
 
 using namespace sf;
 
@@ -12,7 +13,7 @@ class MoveableEntity : public Entity {
  protected:
   bool playerFlag;
 
-  int size;
+  int size;  // 42.
   RectangleShape shape;
 
   int damage;
@@ -33,7 +34,11 @@ class MoveableEntity : public Entity {
   virtual int getHealth();
   virtual int getDamage();
 
-  virtual void move(Map* _map, Event input);
+  int getPosX();
+  int getPosY();
+
+  // return 0 if not valid move. Directions can be: "up" "left" "right" "down"
+  bool move(Map* map, std::String direction);
   virtual void attackOpponent(int opponentPosX, int opponentPosY);
 };
 
