@@ -46,19 +46,19 @@ bool MoveableEntity::move(Map* _map, std::String direction) {
       validMove = 0;
     }
   } else if (!direction.compare("right")) {
-    if (surroundings[0] == 0) {
+    if (surroundings[1] == 0) {
       xPos++;
     } else {
       validMove = 0;
     }
   } else if (!direction.compare("down")) {
-    if (surroundings[0] == 0) {
+    if (surroundings[2] == 0) {
       yPos++;
     } else {
       validMove = 0;
     }
   } else if (!direction.compare("left")) {
-    if (surroundings[0] == 0) {
+    if (surroundings[3] == 0) {
       xPos--;
     } else {
       validMove = 0;
