@@ -38,9 +38,6 @@ void Player::performAction(Map* map, Clock* keyClock) {
 
     } else if (Keyboard::isKeyPressed(Keyboard::D)) {
       this->move(map, "right");
-
-    } else {
-      int i = 69;
     }
     keyClock->restart();  // Reset the clock for the next delay
   }

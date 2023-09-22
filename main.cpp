@@ -26,13 +26,14 @@ int main() {
   Player player1(10, 10);
 
   // MAIN GAME WINDOW LOOP
-  Event event;
+  Event closeEvent;
   while (window.isOpen()) {
-    while (window.pollEvent(event)) {
-      if (event.type == Event::Closed) window.close();
+    while (window.pollEvent(closeEvent)) {
+      if (closeEvent.type == Event::Closed) window.close();
     }
 
-    // Take input from player and move it if allowed.
+    // Take input from user in player class and move it if allowed.
+    // NO event needs to be passed to it from main.
     player1.performAction(&map1, &keyClock);
 
     window.clear();

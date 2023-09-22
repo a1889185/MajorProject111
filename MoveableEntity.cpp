@@ -33,10 +33,12 @@ MoveableEntity::MoveableEntity(int _xPos, int _yPos, int damage, int health)
 // methods.
 void MoveableEntity::setPosX(int _xPos) {
   this->xPos = _xPos;
+  // update shape postion which is matrix postion * unit (42).
   this->shape.setPosition(sf::Vector2f(xPos * 42, yPos * 42));
 }
 void MoveableEntity::setPosY(int _yPos) {
   this->yPos = _yPos;
+  // update shape postion which is matrix postion * unit (42).
   this->shape.setPosition(sf::Vector2f(xPos * 42, yPos * 42));
 }
 

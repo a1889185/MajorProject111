@@ -19,6 +19,7 @@ class Map {
   int mapSize;
   int mapDensity;
   int numWalls;
+
   int** mapMatrix;               // matrix of 1's - walls, and 0's - paths
   NonMoveableEntity** allWalls;  // array of walls to be displayed.
 
@@ -31,7 +32,7 @@ class Map {
   Map(string _name, int _id, int _mapDensity);
   ~Map();
 
-  void draw(sf::RenderWindow* window);
+  void draw(sf::RenderWindow* window);  // draw allWalls
 
   void setName(string _name);
   void setID(int _id);

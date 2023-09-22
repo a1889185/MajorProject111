@@ -40,7 +40,7 @@ class MoveableEntity : public Entity {
 
   void draw(sf::RenderWindow* window);
 
-  // return 0 if not valid move. Directions can be: "up" "left" "right" "down"
+  // return 0 if unvalid move. Direction strings: "up" "left" "right" "down"
   bool move(Map* map, std::string direction);
   virtual void attackOpponent(int opponentPosX, int opponentPosY);
 };

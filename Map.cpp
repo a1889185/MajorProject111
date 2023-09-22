@@ -33,7 +33,7 @@ Map::~Map() {
 }
 
 void Map::draw(sf::RenderWindow* window) {
-  // Print all walls.
+  // draw all walls.
   for (int i = 0; i < numWalls; i++) {
     window->draw(this->allWalls[i]->getShape());
   }
@@ -45,8 +45,11 @@ void Map::setMapDensity(int _mapDensity) { this->mapDensity = _mapDensity; }
 
 std::string Map::getName() { return this->name; }
 int Map::getID() { return this->id; }
+
 int** Map::getMapMatrix() { return this->mapMatrix; }
+
 NonMoveableEntity** Map::getWalls() { return this->allWalls; }
+
 int Map::getNumWalls() {
   this->numWalls = 0;
   int i, j;
@@ -73,13 +76,15 @@ int** Map::generateMap() {
     }
   }
 
-  // intialise thing to clear out paths in ones matrix.
+  // Intialise mazeCreator to clear out paths of zeros in ones matrix.
+  // start at postion 10,10.
   MazeCreator mazeCreator1(10, 10);
   mazeCreator1.leaveTrace(&_mapMatrix);  // leave first trace.
-  // move mazeCreator1 in random direction 100000 times so it can clear a path.
+
+  // Move mazeCreator1 in random direction 100000 times so it can clear a path.
   int randDirection;
   for (i = 0; i < 100000; i++) {
-    // generate random direction: 1=up, 2=right, 3=down, 4=left.
+    // random direction: 1=up, 2=right, 3=down, 4=left.
     randDirection = 1 + rand() % 4;
     // direction | _mapMatrix pointer | mapSize | Density.
     mazeCreator1.move(randDirection, &_mapMatrix, this->mapSize,
@@ -91,15 +96,15 @@ int** Map::generateMap() {
 // set allWalls with positions based on mapMatrix
 void Map::setWalls() {
   getNumWalls();
-
   allWalls = new NonMoveableEntity*[this->numWalls];
 
   int xIndex, yIndex, i = 0;
   for (xIndex = 0; xIndex < mapSize; xIndex++) {
     for (yIndex = 0; yIndex < mapSize; yIndex++) {
       if (mapMatrix[yIndex][xIndex] == 1) {
-        // create new wall of NonMoveableEntity class: x | y | type
-        allWalls[i] = new NonMoveableEntity(xIndex * 42, yIndex * 42, "Wall");
+        // create new wall of NonMoveableEntity class: x | y | type | apperance
+        allWalls[i] =
+            new NonMoveableEntity(xIndex, yIndex, "Wall", sf::Color::Green);
 
         i++;
       }

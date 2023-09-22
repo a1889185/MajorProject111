@@ -10,16 +10,17 @@ NonMoveableEntity::NonMoveableEntity() : size(42), type(" ") {
   this->yPos = 0;
   this->apperance = sf::Color::Green;
   this->shape = new sf::RectangleShape(sf::Vector2f(size, size));
-  this->shape->setPosition(sf::Vector2f(xPos, yPos));
+  // shape position is mapmatrix index * unit (42)
+  this->shape->setPosition(sf::Vector2f(xPos * 42, yPos * 42));
   this->shape->setFillColor(apperance);
 }
 
 NonMoveableEntity::NonMoveableEntity(int x, int y, std::string _type)
     : Entity::Entity(x, y), size(42), type(_type) {
   this->apperance = sf::Color::Green;
-
   this->shape = new sf::RectangleShape(sf::Vector2f(size, size));
-  this->shape->setPosition(sf::Vector2f(xPos, yPos));
+  // shape position is mapmatrix index * unit (42)
+  this->shape->setPosition(sf::Vector2f(xPos * 42, yPos * 42));
   this->shape->setFillColor(apperance);
 }
 
@@ -28,7 +29,8 @@ NonMoveableEntity::NonMoveableEntity(int x, int y, std::string _type,
     : Entity::Entity(x, y), size(42), type(_type) {
   this->apperance = _apperance;
   this->shape = new sf::RectangleShape(sf::Vector2f(size, size));
-  this->shape->setPosition(sf::Vector2f(xPos, yPos));
+  // shape position is mapmatrix index * unit (42)
+  this->shape->setPosition(sf::Vector2f(xPos * 42, yPos * 42));
   this->shape->setFillColor(apperance);
 }
 
