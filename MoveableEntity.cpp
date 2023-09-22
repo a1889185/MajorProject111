@@ -5,19 +5,40 @@
 #include "Entity.h"
 #include "Map.h"
 
-MoveableEntity::MoveableEntity() : Entity() {
+MoveableEntity::MoveableEntity() : Entity::Entity() {
   this->damage = 0;
   this->health = 0;
-  this->size = 0;
+  this->size = 42;
+  this->shape.setSize(sf::Vector2f(size, size));
+  this->shape.setFillColor(sf::Color::Red);
+  this->shape.setPosition(sf::Vector2f(xPos, yPos));
+}
+MoveableEntity::MoveableEntity(int _xPos, int _yPos)
+    : Entity::Entity(_xPos, _yPos) {
+  this->damage = 0;
+  this->health = 0;
+  this->size = 42;
+  this->shape.setSize(sf::Vector2f(size, size));
+  this->shape.setFillColor(sf::Color::Red);
+  this->shape.setPosition(sf::Vector2f(xPos * 42, yPos * 42));
+}
+MoveableEntity::MoveableEntity(int _xPos, int _yPos, int damage, int health)
+    : Entity::Entity(_xPos, _yPos), damage(damage), health(health) {
+  this->size = 42;
+  this->shape.setSize(sf::Vector2f(size, size));
+  this->shape.setFillColor(sf::Color::Red);
+  this->shape.setPosition(sf::Vector2f(xPos * 42, yPos * 42));
 }
 
-MoveableEntity::MoveableEntity(int _xPos, int _yPos, int damage, int health,
-                               int size)
-    : xPos(_xPos), yPos(_yPos), damage(damage), health(health), size(size) {}
-
 // methods.
-void MoveableEntity::setPosX(int _xPos) { this->xPos = _xPos; }
-void MoveableEntity::setPosY(int _yPos) { this->yPos = _yPos; }
+void MoveableEntity::setPosX(int _xPos) {
+  this->xPos = _xPos;
+  this->shape.setPosition(sf::Vector2f(xPos * 42, yPos * 42));
+}
+void MoveableEntity::setPosY(int _yPos) {
+  this->yPos = _yPos;
+  this->shape.setPosition(sf::Vector2f(xPos * 42, yPos * 42));
+}
 
 void MoveableEntity::setHealth(int _health) { this->health = _health; }
 void MoveableEntity::setDamage(int _damage) { this->damage = _damage; }
@@ -28,16 +49,18 @@ int MoveableEntity::getDamage() { return damage; }
 int MoveableEntity::getPosX() { return xPos; }
 int MoveableEntity::getPosY() { return yPos; }
 
+void MoveableEntity::draw(sf::RenderWindow* window) { window->draw(shape); }
+
 void MoveableEntity::attackOpponent(int opponentPosX, int opponentPosY) {}
 
-bool MoveableEntity::move(Map* map, std::String direction) {
+bool MoveableEntity::move(Map* map, std::string direction) {
   bool validMove = 1;
   // 0=up,1=right,2=down,3=left.
   int surroundings[4];
-  surroundings[0] = (*map)[yPos - 1][xPos];  // above
-  surroundings[1] = (*map)[yPos][xPos + 1];  // to right
-  surroundings[2] = (*map)[yPos + 1][xPos];  // bellow
-  surroundings[3] = (*map)[yPos][xPos - 1];  // to left
+  surroundings[0] = (map->getMapMatrix())[yPos - 1][xPos];  // above
+  surroundings[1] = (map->getMapMatrix())[yPos][xPos + 1];  // to right
+  surroundings[2] = (map->getMapMatrix())[yPos + 1][xPos];  // bellow
+  surroundings[3] = (map->getMapMatrix())[yPos][xPos - 1];  // to left
 
   if (!direction.compare("up")) {
     if (surroundings[0] == 0) {
@@ -66,6 +89,10 @@ bool MoveableEntity::move(Map* map, std::String direction) {
   } else {
     validMove = 0;
   }
+
+  // update;
+  this->setPosX(this->xPos);
+  this->setPosY(this->yPos);
 
   return validMove;
 }

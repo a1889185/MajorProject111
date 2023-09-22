@@ -12,8 +12,8 @@ void Enemy::attackOpponent(Player* player) {
   if (xPos == player->getPosX() && yPos == player->getPosY()) {
     // enemy can attack player, so remove player from game
     delete player;  // delete the player object
-    cout << "GAME OVER!"
-         << endl;  // print game over message dont know how to do in sfml
+    std::cout << "GAME OVER!"
+              << endl;  // print game over message dont know how to do in sfml
   }
 }
 
