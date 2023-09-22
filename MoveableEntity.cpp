@@ -30,14 +30,14 @@ int MoveableEntity::getPosY() { return yPos; }
 
 void MoveableEntity::attackOpponent(int opponentPosX, int opponentPosY) {}
 
-bool MoveableEntity::move(Map* map, std::String direction) {
+bool MoveableEntity::move(Map* map, std::string direction) {
   bool validMove = 1;
   // 0=up,1=right,2=down,3=left.
   int surroundings[4];
-  surroundings[0] = (*map)[yPos - 1][xPos];  // above
-  surroundings[1] = (*map)[yPos][xPos + 1];  // to right
-  surroundings[2] = (*map)[yPos + 1][xPos];  // bellow
-  surroundings[3] = (*map)[yPos][xPos - 1];  // to left
+  surroundings[0] = (map->getMapMatrix())[yPos - 1][xPos];  // above
+  surroundings[1] = (map->getMapMatrix())[yPos][xPos + 1];  // to right
+  surroundings[2] = (map->getMapMatrix())[yPos + 1][xPos];  // bellow
+  surroundings[3] = (map->getMapMatrix())[yPos][xPos - 1];  // to left
 
   if (!direction.compare("up")) {
     if (surroundings[0] == 0) {
