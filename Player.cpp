@@ -24,8 +24,9 @@ void Player::attackOpponent(MoveableEntity* opponent) {
 }
 
 void Player::performAction(Map* map, Clock* keyClock) {
-  // The clock sets a delay between each key input so it doesnt have a spaz.
-  if (keyClock->getElapsedTime().asMilliseconds() >= 200) {
+  // The clock sets a delay after each key input so it doesnt have a spaz.
+  int refreshRate = 100;  // for key inputs.
+  if (keyClock->getElapsedTime().asMilliseconds() >= refreshRate) {
     if (Keyboard::isKeyPressed(Keyboard::W)) {
       this->move(map, "up");
 
