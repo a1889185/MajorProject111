@@ -31,7 +31,7 @@ class Map {
   Map(string _name, int _id, int _mapDensity);
   ~Map();
 
-  void mapDisplay();
+  void draw(sf::RenderWindow* window);
 
   void setName(string _name);
   void setID(int _id);

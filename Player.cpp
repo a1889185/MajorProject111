@@ -24,6 +24,7 @@ void Player::attackOpponent(MoveableEntity* opponent) {
 }
 
 void Player::performAction(Map* map, Clock* keyClock) {
+  // The clock sets a delay between each key input so it doesnt have a spaz.
   if (keyClock->getElapsedTime().asMilliseconds() >= 200) {
     if (Keyboard::isKeyPressed(Keyboard::W)) {
       this->move(map, "up");
@@ -57,6 +58,7 @@ void Player::performAction(Map* map, Clock* keyClock, MoveableEntity** enemies,
     yPos_Enemies[i] = enemies[i]->getPosY();
   }
 
+  // The clock sets a delay between each key input so it doesnt have a spaz.
   if (keyClock->getElapsedTime().asMilliseconds() >= 200) {
     if (Keyboard::isKeyPressed(Keyboard::W)) {
       // Check if moving up is valid (not into a enemy)

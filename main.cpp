@@ -22,8 +22,6 @@ int main() {
 
   // Generate random map with densisty: 1000=not many paths, 1=allpaths.
   Map map1(1000);
-  int numWalls = map1.getNumWalls();
-  NonMoveableEntity** allWalls = map1.getWalls();
 
   Player player1(10, 10);
 
@@ -33,29 +31,13 @@ int main() {
     while (window.pollEvent(event)) {
       if (event.type == Event::Closed) window.close();
     }
-    window.clear();
 
-    // Display map.
-    for (int i = 0; i < numWalls; i++) {
-      window.draw(allWalls[i]->getShape());
-    }
-
-    // if (clock.getElapsedTime().asMilliseconds() >= 200) {
-    //   if (Keyboard::isKeyPressed(Keyboard::W)) {
-    //     help.move(&map1, "up");
-    //   } else if (Keyboard::isKeyPressed(Keyboard::A)) {
-    //     help.move(&map1, "left");
-    //   } else if (Keyboard::isKeyPressed(Keyboard::S)) {
-    //     help.move(&map1, "down");
-    //   } else if (Keyboard::isKeyPressed(Keyboard::D)) {
-    //     help.move(&map1, "right");
-    //   }
-    //   clock.restart();  // Reset the clock for the next delay
-    // }
+    // Take input from player and move it if allowed.
     player1.performAction(&map1, &keyClock);
 
-    player1.draw(&window);
-
+    window.clear();
+    map1.draw(&window);     // Display map.
+    player1.draw(&window);  // Display player.
     window.display();
   }
 
