@@ -5,7 +5,9 @@
 
 #include "Entity.h"
 #include "Map.h"
+#include "MoveableEntity.h"
 #include "NonMoveableEntity.h"
+#include "Player.h"
 
 using namespace sf;
 
@@ -15,26 +17,27 @@ int windowSize = 20 * u;
 
 int main() {
   srand((time(nullptr)));
+  Clock keyClock;  // for setting a delay between keypresses.
   RenderWindow window(VideoMode(windowSize, windowSize), "Rogue");
 
   // Generate random map with densisty: 1000=not many paths, 1=allpaths.
   Map map1(1000);
-  int numWalls = map1.getNumWalls();
-  NonMoveableEntity** allWalls = map1.getWalls();
 
-  // MAIN GAME WINDOW LOOP.
+  Player player1(10, 10);
+
+  // MAIN GAME WINDOW LOOP
+  Event event;
   while (window.isOpen()) {
-    Event event;
     while (window.pollEvent(event)) {
       if (event.type == Event::Closed) window.close();
     }
+
+    // Take input from player and move it if allowed.
+    player1.performAction(&map1, &keyClock);
+
     window.clear();
-
-    // Display map.
-    for (int i = 0; i < numWalls; i++) {
-      window.draw(allWalls[i]->getShape());
-    }
-
+    map1.draw(&window);     // Display map.
+    player1.draw(&window);  // Display player.
     window.display();
   }
 

@@ -32,7 +32,12 @@ Map::~Map() {
   delete[] allWalls;
 }
 
-void Map::mapDisplay() {}
+void Map::draw(sf::RenderWindow* window) {
+  // Print all walls.
+  for (int i = 0; i < numWalls; i++) {
+    window->draw(this->allWalls[i]->getShape());
+  }
+}
 
 void Map::setName(std::string _name) { this->name = _name; }
 void Map::setID(int _id) { this->id = _id; }
@@ -41,6 +46,7 @@ void Map::setMapDensity(int _mapDensity) { this->mapDensity = _mapDensity; }
 std::string Map::getName() { return this->name; }
 int Map::getID() { return this->id; }
 int** Map::getMapMatrix() { return this->mapMatrix; }
+NonMoveableEntity** Map::getWalls() { return this->allWalls; }
 int Map::getNumWalls() {
   this->numWalls = 0;
   int i, j;
@@ -100,5 +106,3 @@ void Map::setWalls() {
     }
   }
 }
-
-NonMoveableEntity** Map::getWalls() { return this->allWalls; }

@@ -21,7 +21,8 @@ class MoveableEntity : public Entity {
 
  public:
   MoveableEntity();
-  MoveableEntity(int _xPos, int _yPos, int damage, int health, int size);
+  MoveableEntity(int _xPos, int _yPos);
+  MoveableEntity(int _xPos, int _yPos, int damage, int health);
 
   // methods.
 
@@ -36,6 +37,8 @@ class MoveableEntity : public Entity {
 
   int getPosX();
   int getPosY();
+
+  void draw(sf::RenderWindow* window);
 
   // return 0 if not valid move. Directions can be: "up" "left" "right" "down"
   bool move(Map* map, std::string direction);
