@@ -54,12 +54,14 @@ int MoveableEntity::getPosY() { return yPos; }
 void MoveableEntity::draw(sf::RenderWindow* window) { window->draw(shape); }
 
 void MoveableEntity::attackOpponent(MoveableEntity* opponent) {
-  int OpponentHealth = opponent->getHealth();
-  opponent->setHealth(OpponentHealth - this->damage);
-  // min is zero.
-  OpponentHealth = opponent->getHealth();
-  if (OpponentHealth < 0) {
-    opponent->setHealth(0);
+  if (opponent != nullptr) {
+    int OpponentHealth = opponent->getHealth();
+    opponent->setHealth(OpponentHealth - this->damage);
+    // min is zero.
+    OpponentHealth = opponent->getHealth();
+    if (OpponentHealth < 0) {
+      opponent->setHealth(0);
+    }
   }
 }
 
