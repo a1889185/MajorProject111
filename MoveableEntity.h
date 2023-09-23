@@ -42,7 +42,7 @@ class MoveableEntity : public Entity {
 
   // return 0 if unvalid move. Direction strings: "up" "left" "right" "down"
   bool move(Map* map, std::string direction);
-  virtual void attackOpponent(int opponentPosX, int opponentPosY);
+  virtual void attackOpponent(MoveableEntity* opponent);
 };
 
 #endif  // MOVEABLEENTITY_H

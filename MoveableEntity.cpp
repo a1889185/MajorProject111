@@ -53,7 +53,15 @@ int MoveableEntity::getPosY() { return yPos; }
 
 void MoveableEntity::draw(sf::RenderWindow* window) { window->draw(shape); }
 
-void MoveableEntity::attackOpponent(int opponentPosX, int opponentPosY) {}
+void MoveableEntity::attackOpponent(MoveableEntity* opponent) {
+  int OpponentHealth = opponent->getHealth();
+  opponent->setHealth(OpponentHealth - this->damage);
+  // min is zero.
+  OpponentHealth = opponent->getHealth();
+  if (OpponentHealth < 0) {
+    opponent->setHealth(0);
+  }
+}
 
 bool MoveableEntity::move(Map* map, std::string direction) {
   bool validMove = 1;
