@@ -19,7 +19,7 @@ class Player : public MoveableEntity {
   Player(int _xPos, int _yPos);
   Player(int _xPos, int _yPos, int damage, int health, Sprite apperance);
 
-  void attackOpponent(MoveableEntity* opponent);
+  // void attackOpponent(MoveableEntity* opponent);
 
   // override perform action (one doesnt consider enemies). return true if
   // action performed;
