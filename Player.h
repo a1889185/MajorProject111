@@ -21,9 +21,10 @@ class Player : public MoveableEntity {
 
   void attackOpponent(MoveableEntity* opponent);
 
-  // override perform action (one doesnt consider enemies).
-  void performAction(Map* map, Clock* keyClock);
-  void performAction(Map* map, Clock* keyClock, MoveableEntity** enemies,
+  // override perform action (one doesnt consider enemies). return true if
+  // action performed;
+  bool performAction(Map* map, Clock* keyClock);
+  bool performAction(Map* map, Clock* keyClock, MoveableEntity** enemies,
                      int numEnemies);
 };
 

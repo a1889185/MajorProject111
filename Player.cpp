@@ -23,29 +23,32 @@ void Player::attackOpponent(MoveableEntity* opponent) {
   }
 }
 
-void Player::performAction(Map* map, Clock* keyClock) {
+bool Player::performAction(Map* map, Clock* keyClock) {
+  bool actionPerformed = 0;
   // The clock sets a delay after each key input so it doesnt have a spaz.
   int refreshRate = 100;  // for key inputs.
   if (keyClock->getElapsedTime().asMilliseconds() >= refreshRate) {
     if (Keyboard::isKeyPressed(Keyboard::W)) {
-      this->move(map, "up");
+      actionPerformed = this->move(map, "up");
 
     } else if (Keyboard::isKeyPressed(Keyboard::A)) {
-      this->move(map, "left");
+      actionPerformed = this->move(map, "left");
 
     } else if (Keyboard::isKeyPressed(Keyboard::S)) {
-      this->move(map, "down");
+      actionPerformed = this->move(map, "down");
 
     } else if (Keyboard::isKeyPressed(Keyboard::D)) {
-      this->move(map, "right");
+      actionPerformed = this->move(map, "right");
     }
     keyClock->restart();  // Reset the clock for the next delay
   }
+  return actionPerformed;
 }
 
-void Player::performAction(Map* map, Clock* keyClock, MoveableEntity** enemies,
+bool Player::performAction(Map* map, Clock* keyClock, MoveableEntity** enemies,
                            int numEnemies) {
   // Function to handle player actions (user inputs)
+  bool actionPerformed = 0;
 
   // Get positions of all enemies and store them in arrays
   int* xPos_Enemies = new int[numEnemies];
@@ -63,10 +66,10 @@ void Player::performAction(Map* map, Clock* keyClock, MoveableEntity** enemies,
       for (int i = 0; i < numEnemies; i++) {
         if (yPos - 1 == yPos_Enemies[i]) {
           // attackOpponent();  // attack nearby enemy
-          this->move(map, "up");
+          actionPerformed = this->move(map, "up");
           break;  // Break out of loop after attacking enemy
         } else {
-          this->move(map, "up");
+          actionPerformed = this->move(map, "up");
         }
       }
 
@@ -75,11 +78,11 @@ void Player::performAction(Map* map, Clock* keyClock, MoveableEntity** enemies,
       for (int i = 0; i < numEnemies; i++) {
         if (xPos - 1 == xPos_Enemies[i]) {
           // attackOpponent();
-          this->move(map, "left");
+          actionPerformed = this->move(map, "left");
           break;
 
         } else {
-          this->move(map, "left");
+          actionPerformed = this->move(map, "left");
         }
       }
 
@@ -88,11 +91,11 @@ void Player::performAction(Map* map, Clock* keyClock, MoveableEntity** enemies,
       for (int i = 0; i < numEnemies; i++) {
         if (yPos + 1 == yPos_Enemies[i]) {
           // attackOpponent();
-          this->move(map, "down");
+          actionPerformed = this->move(map, "down");
           break;
 
         } else {
-          this->move(map, "down");
+          actionPerformed = this->move(map, "down");
         }
       }
 
@@ -101,11 +104,11 @@ void Player::performAction(Map* map, Clock* keyClock, MoveableEntity** enemies,
       for (int i = 0; i < numEnemies; i++) {
         if (xPos + 1 == xPos_Enemies[i]) {
           // attackOpponent();
-          this->move(map, "right");
+          actionPerformed = this->move(map, "right");
           break;
 
         } else {
-          this->move(map, "right");
+          actionPerformed = this->move(map, "right");
         }
       }
     } else {
@@ -133,6 +136,8 @@ void Player::performAction(Map* map, Clock* keyClock, MoveableEntity** enemies,
     //   break;
 
     keyClock->restart();  // Reset the clock for the next delay
+
+    return actionPerformed;
   }
 
   delete[] xPos_Enemies;
