@@ -136,12 +136,12 @@ bool Player::performAction(Map* map, Clock* keyClock, MoveableEntity** enemies,
     //   break;
 
     keyClock->restart();  // Reset the clock for the next delay
-
-    return actionPerformed;
   }
 
   delete[] xPos_Enemies;
   delete[] yPos_Enemies;
+
+  return actionPerformed;
 }
 
 // void Player::performAction(Map* map, char action, Enemy* enemies,
