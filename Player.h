@@ -12,12 +12,12 @@ using namespace sf;
 
 class Player : public MoveableEntity {
  private:
-  Sprite appearance;
+  Color apperance;
 
  public:
   Player();
   Player(int _xPos, int _yPos);
-  Player(int _xPos, int _yPos, int damage, int health, Sprite apperance);
+  Player(int _xPos, int _yPos, int damage, int health, Color apperance);
 
   // void attackOpponent(MoveableEntity* opponent);
 

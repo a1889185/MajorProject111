@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 
+#include "Enemy.h"
 #include "Entity.h"
 #include "Map.h"
 #include "MoveableEntity.h"
@@ -23,7 +24,11 @@ int main() {
   // Generate random map with densisty: 1000=not many paths, 1=allpaths.
   Map map1(1000);
 
-  Player player1(10, 10);
+  // x | y | damage | health | Colour
+  Player player1(10, 10, 25, 100, Color::Blue);
+  bool hasPlayerMoved = 0;
+
+  Enemy enemy1(5, 5), enemy2(15, 15), enemy3(5, 15);
 
   // MAIN GAME WINDOW LOOP
   Event closeEvent;
@@ -34,11 +39,21 @@ int main() {
 
     // Take input from user in player class and move it if allowed.
     // NO event needs to be passed to it from main.
-    player1.performAction(&map1, &keyClock);
+    hasPlayerMoved = player1.performAction(&map1, &keyClock);
+
+    if (hasPlayerMoved) {
+      enemy1.advancePos(&map1, &player1);
+      enemy2.advancePos(&map1, &player1);
+      enemy3.advancePos(&map1, &player1);
+      hasPlayerMoved = 0;
+    }
 
     window.clear();
     map1.draw(&window);     // Display map.
     player1.draw(&window);  // Display player.
+    enemy1.draw(&window);   // Display enemy.
+    enemy2.draw(&window);
+    enemy3.draw(&window);
     window.display();
   }
 

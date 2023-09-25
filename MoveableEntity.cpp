@@ -6,8 +6,8 @@
 #include "Map.h"
 
 MoveableEntity::MoveableEntity() : Entity::Entity() {
-  this->damage = 0;
-  this->health = 0;
+  this->damage = 10;
+  this->health = 100;
   this->size = 42;
   this->shape.setSize(sf::Vector2f(size, size));
   this->shape.setFillColor(sf::Color::Red);
