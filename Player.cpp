@@ -10,10 +10,10 @@ using namespace sf;
 
 Player::Player() : MoveableEntity() {}
 Player::Player(int _xPos, int _yPos) : MoveableEntity(_xPos, _yPos) {}
-Player::Player(int _xPos, int _yPos, int damage, int health, Sprite _apperance)
+Player::Player(int _xPos, int _yPos, int damage, int health, Color _apperance)
     : MoveableEntity(_xPos, _yPos, damage, health) {
-  this->appearance = _apperance;
-  // this->shape.setTexture(appereance);
+  this->apperance = _apperance;
+  this->shape.setFillColor(apperance);
 }
 
 // ALLREADY DEFINED IN MOVEABLE ENTITY CLASS
