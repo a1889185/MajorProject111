@@ -16,12 +16,13 @@ Player::Player(int _xPos, int _yPos, int damage, int health, Sprite _apperance)
   // this->shape.setTexture(appereance);
 }
 
-void Player::attackOpponent(MoveableEntity* opponent) {
-  if (opponent != nullptr) {
-    // Remove enemy from game
-    delete opponent;  // (think this is correct way to do it?)
-  }
-}
+// ALLREADY DEFINED IN MOVEABLE ENTITY CLASS
+// void Player::attackOpponent(MoveableEntity* opponent) {
+//   if (opponent != nullptr) {
+//     // Remove enemy from game
+//     delete opponent;  // (think this is correct way to do it?)
+//   }
+// }
 
 bool Player::performAction(Map* map, Clock* keyClock) {
   bool actionPerformed = 0;

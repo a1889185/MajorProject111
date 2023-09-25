@@ -61,6 +61,7 @@ void MoveableEntity::attackOpponent(MoveableEntity* opponent) {
     OpponentHealth = opponent->getHealth();
     if (OpponentHealth < 0) {
       opponent->setHealth(0);
+      delete[] opponent;
     }
   }
 }
