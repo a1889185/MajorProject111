@@ -71,6 +71,10 @@ int main() {
       enemies[1]->advancePos(map, player);
       enemies[2]->advancePos(map, player);
       hasPlayerMoved = 0;
+
+      cout << enemies[0]->getHealth() << endl; 
+      cout << enemies[1]->getHealth() << endl; 
+      cout << enemies[2]->getHealth() << endl; 
     }
 
     if (player->getHealth() == 0) {
