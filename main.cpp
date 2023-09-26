@@ -30,7 +30,10 @@ int main() {
   bool hasPlayerMoved = false;
 
   Player* player = new Player(10, 10);
-  Enemy** enemies = new Enemy*[3];
+  MoveableEntity** enemies = new MoveableEntity*[3];
+  enemies[0] = new Enemy;
+  enemies[1] = new Enemy;
+  enemies[2] = new Enemy;
   Map* map;
 
   // MAIN GAME WINDOW LOOP
@@ -40,7 +43,7 @@ int main() {
       if (closeEvent.type == Event::Closed) window.close();
     }
 
-    if (isLevelComplete) {  // reset everything.
+    if (isLevelComplete) {  // reset everything on new level.
       window.draw(deathScreen);
       window.display();
       sleep(milliseconds(500));
@@ -58,13 +61,13 @@ int main() {
 
       delete player;
       // x | y | damage | health | Colour
-      player = new Player(10, 10, 25, 100, Color::Blue);
+      player = new Player(10, 10, 100, 100, Color::Blue);
 
       isLevelComplete = false;
     }
 
     // Take input from user in player class and move it if allowed.
-    hasPlayerMoved = player->performAction(map, &keyClock);
+    hasPlayerMoved = player->performAction(map, &keyClock, enemies, 3);
 
     if (hasPlayerMoved) {  // move enemys if player moved.
       enemies[0]->advancePos(map, player);
@@ -72,9 +75,9 @@ int main() {
       enemies[2]->advancePos(map, player);
       hasPlayerMoved = 0;
 
-      cout << enemies[0]->getHealth() << endl; 
-      cout << enemies[1]->getHealth() << endl; 
-      cout << enemies[2]->getHealth() << endl; 
+      cout << enemies[0]->getHealth() << " ";
+      cout << enemies[1]->getHealth() << " ";
+      cout << enemies[2]->getHealth() << endl;
     }
 
     if (player->getHealth() == 0) {

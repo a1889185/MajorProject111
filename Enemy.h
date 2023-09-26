@@ -20,7 +20,7 @@ class Enemy : public MoveableEntity {
   Enemy(int _xPos, int _yPos, int damage, int health, Sprite apperance);
 
   // void attackOpponent(Player* player);
-  void advancePos(Map* map, Player* player);
+  void advancePos(Map* map, MoveableEntity* player);
 };
 
 #endif

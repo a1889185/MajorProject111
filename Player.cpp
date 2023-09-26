@@ -34,7 +34,7 @@ bool Player::performAction(Map* map, Clock* keyClock) {
       actionPerformed = this->move(map, "right");
 
     } else if (Keyboard::isKeyPressed(Keyboard::Space)) {
-      actionPerformed = 1; 
+      actionPerformed = 1;
     }
 
     keyClock->restart();  // Reset the clock for the next delay
@@ -47,98 +47,74 @@ bool Player::performAction(Map* map, Clock* keyClock, MoveableEntity** enemies,
   // Function to handle player actions (user inputs)
   bool actionPerformed = 0;
 
-  // Get positions of all enemies and store them in arrays
-  int* xPos_Enemies = new int[numEnemies];
-  int* yPos_Enemies = new int[numEnemies];
-
-  for (int i = 0; i < numEnemies; i++) {
-    xPos_Enemies[i] = enemies[i]->getPosX();
-    yPos_Enemies[i] = enemies[i]->getPosY();
-  }
-
   // The clock sets a delay between each key input so it doesnt have a spaz.
-  if (keyClock->getElapsedTime().asMilliseconds() >= 200) {
+  int refreshRate = 100;  // for key inputs.
+  if (keyClock->getElapsedTime().asMilliseconds() >= refreshRate) {
     if (Keyboard::isKeyPressed(Keyboard::W)) {
       // Check if moving up is valid (not into a enemy)
       for (int i = 0; i < numEnemies; i++) {
-        if (yPos - 1 == yPos_Enemies[i]) {
+        if (yPos - 1 == enemies[i]->getPosY() &&
+            xPos == enemies[i]->getPosX()) {
           attackOpponent(enemies[i]);  // attack nearby enemy
           actionPerformed = this->move(map, "up");
           break;  // Break out of loop after attacking enemy
         } else {
           actionPerformed = this->move(map, "up");
+          break;
         }
       }
 
     } else if (Keyboard::isKeyPressed(Keyboard::A)) {
       // Check if moving left is valid (not a enemy)
       for (int i = 0; i < numEnemies; i++) {
-        if (xPos - 1 == xPos_Enemies[i]) {
+        if (yPos == enemies[i]->getPosY() &&
+            xPos - 1 == enemies[i]->getPosX()) {
           attackOpponent(enemies[i]);
+
           actionPerformed = this->move(map, "left");
           break;
 
         } else {
           actionPerformed = this->move(map, "left");
+          break;
         }
       }
 
     } else if (Keyboard::isKeyPressed(Keyboard::S)) {
       // Check if moving down is valid (not a enemy)
       for (int i = 0; i < numEnemies; i++) {
-        if (yPos + 1 == yPos_Enemies[i]) {
+        if (yPos + 1 == enemies[i]->getPosY() &&
+            xPos == enemies[i]->getPosX()) {
           attackOpponent(enemies[i]);
           actionPerformed = this->move(map, "down");
           break;
 
         } else {
           actionPerformed = this->move(map, "down");
+          break;
         }
       }
 
     } else if (Keyboard::isKeyPressed(Keyboard::D)) {
       // Check if moving right is valid (not a enemy)
       for (int i = 0; i < numEnemies; i++) {
-        if (xPos + 1 == xPos_Enemies[i]) {
+        if (yPos == enemies[i]->getPosY() &&
+            xPos + 1 == enemies[i]->getPosX()) {
           attackOpponent(enemies[i]);
           actionPerformed = this->move(map, "right");
           break;
 
         } else {
           actionPerformed = this->move(map, "right");
+          break;
         }
       }
     } else if (Keyboard::isKeyPressed(Keyboard::Space)) {
-      actionPerformed = 1; 
-    } else {
-      int i = 69;
+      actionPerformed = 1;
     }
-
-    // case move_wait:
-    //   setPosX(xPos);  // player remains stationary
-    //   setPosY(yPos);
-    //   break;
-
-    // default:
-    //   // Print an error message for invalid input
-    //   std::cout << "Invalid input. Please use: "
-    //             << "'W'"
-    //             << ", "
-    //             << "'S'"
-    //             << ", "
-    //             << "'A'"
-    //             << ", "
-    //             << "'D'"
-    //             << ", or "
-    //             << "Space bar"
-    //             << "." << std::endl;
-    //   break;
 
     keyClock->restart();  // Reset the clock for the next delay
   }
-
-  delete[] xPos_Enemies;
-  delete[] yPos_Enemies;
 
   return actionPerformed;
 }
