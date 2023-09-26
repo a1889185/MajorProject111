@@ -66,14 +66,6 @@ int main() {
       hasPlayerMoved = 0;
     }
 
-    window.clear();
-    map->draw(&window);         // Display map.
-    player->draw(&window);      // Display player.
-    enemies[0]->draw(&window);  // Display enemy.
-    enemies[1]->draw(&window);
-    enemies[2]->draw(&window);
-    window.display();
-
     if (player->getHealth() == 0) {
       isLevelComplete = true;
     }
