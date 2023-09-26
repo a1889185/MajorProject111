@@ -17,6 +17,7 @@ int u = 42;
 int windowSize = 20 * u;
 
 int main() {
+  int i;
   srand((time(nullptr)));
   Clock keyClock;  // for setting a delay between keypresses.
   RenderWindow window(VideoMode(windowSize, windowSize), "Rogue");
@@ -29,18 +30,17 @@ int main() {
   bool isLevelComplete = true;
   bool hasPlayerMoved = false;
 
-  Player* player = new Player(10, 10);
+  Player* player = new Player(10, 10, 100, 100, Color::Blue);
   MoveableEntity** enemies = new MoveableEntity*[3];
-  enemies[0] = new Enemy;
-  enemies[1] = new Enemy;
-  enemies[2] = new Enemy;
   Map* map;
 
   // MAIN GAME WINDOW LOOP
   Event closeEvent;
   while (window.isOpen()) {
     while (window.pollEvent(closeEvent)) {
-      if (closeEvent.type == Event::Closed) window.close();
+      if (closeEvent.type == Event::Closed) {
+        window.close();
+      }
     }
 
     if (isLevelComplete) {  // reset everything on new level.
@@ -70,14 +70,14 @@ int main() {
     hasPlayerMoved = player->performAction(map, &keyClock, enemies, 3);
 
     if (hasPlayerMoved) {  // move enemys if player moved.
-      enemies[0]->advancePos(map, player);
-      enemies[1]->advancePos(map, player);
-      enemies[2]->advancePos(map, player);
+      for (i = 0; i < 3; i++) {
+        if (enemies[i]->getHealth() != 0) {
+          enemies[i]->advancePos(map, player);
+          std::cout << enemies[i]->getHealth() << " ";
+        }
+      }
+      std::cout << "\n";
       hasPlayerMoved = 0;
-
-      cout << enemies[0]->getHealth() << " ";
-      cout << enemies[1]->getHealth() << " ";
-      cout << enemies[2]->getHealth() << endl;
     }
 
     if (player->getHealth() == 0) {
@@ -85,13 +85,14 @@ int main() {
     }
 
     window.clear();
-    map->draw(&window);         // Display map.
-    player->draw(&window);      // Display player.
-    enemies[0]->draw(&window);  // Display enemy.
-    enemies[1]->draw(&window);
-    enemies[2]->draw(&window);
+    map->draw(&window);        // Display map.
+    player->draw(&window);     // Display player.
+    for (i = 0; i < 3; i++) {  // Display enemies.
+      if (enemies[i]->getHealth() != 0) {
+        enemies[i]->draw(&window);
+      }
+    }
     window.display();
   }
-
   return 0;
 }
