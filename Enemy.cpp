@@ -33,7 +33,19 @@ void Enemy::advancePos(Map* map, Player* player) {
 
   bool succesfulMove = false;
 
-  if (relativeXPos <= 0 && relativeYPos >= 0) {
+  if (playerXPos + 1 == this->xPos && playerYPos == this->yPos) {
+    attackOpponent(player);
+    move(map, "right");
+  } else if (playerXPos - 1 == this->xPos && playerYPos == this->yPos) {
+    attackOpponent(player);
+    move(map, "left");
+  } else if (playerXPos == this->xPos && playerYPos + 1 == this->yPos) {
+    attackOpponent(player);
+    move(map, "down");
+  } else if (playerXPos == this->xPos && playerYPos - 1 == this->yPos) {
+    attackOpponent(player);
+    move(map, "up");
+  } else if (relativeXPos <= 0 && relativeYPos >= 0) {
     // player above right of enemy.
 
     // choose direction which has furthest distance between.
