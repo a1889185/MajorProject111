@@ -32,7 +32,11 @@ bool Player::performAction(Map* map, Clock* keyClock) {
 
     } else if (Keyboard::isKeyPressed(Keyboard::D)) {
       actionPerformed = this->move(map, "right");
+
+    } else if (Keyboard::isKeyPressed(Keyboard::Space)) {
+      actionPerformed = 1; 
     }
+
     keyClock->restart();  // Reset the clock for the next delay
   }
   return actionPerformed;
@@ -58,7 +62,7 @@ bool Player::performAction(Map* map, Clock* keyClock, MoveableEntity** enemies,
       // Check if moving up is valid (not into a enemy)
       for (int i = 0; i < numEnemies; i++) {
         if (yPos - 1 == yPos_Enemies[i]) {
-          // attackOpponent();  // attack nearby enemy
+          attackOpponent(enemies[i]);  // attack nearby enemy
           actionPerformed = this->move(map, "up");
           break;  // Break out of loop after attacking enemy
         } else {
@@ -70,7 +74,7 @@ bool Player::performAction(Map* map, Clock* keyClock, MoveableEntity** enemies,
       // Check if moving left is valid (not a enemy)
       for (int i = 0; i < numEnemies; i++) {
         if (xPos - 1 == xPos_Enemies[i]) {
-          // attackOpponent();
+          attackOpponent(enemies[i]);
           actionPerformed = this->move(map, "left");
           break;
 
@@ -83,7 +87,7 @@ bool Player::performAction(Map* map, Clock* keyClock, MoveableEntity** enemies,
       // Check if moving down is valid (not a enemy)
       for (int i = 0; i < numEnemies; i++) {
         if (yPos + 1 == yPos_Enemies[i]) {
-          // attackOpponent();
+          attackOpponent(enemies[i]);
           actionPerformed = this->move(map, "down");
           break;
 
@@ -96,7 +100,7 @@ bool Player::performAction(Map* map, Clock* keyClock, MoveableEntity** enemies,
       // Check if moving right is valid (not a enemy)
       for (int i = 0; i < numEnemies; i++) {
         if (xPos + 1 == xPos_Enemies[i]) {
-          // attackOpponent();
+          attackOpponent(enemies[i]);
           actionPerformed = this->move(map, "right");
           break;
 
@@ -104,6 +108,8 @@ bool Player::performAction(Map* map, Clock* keyClock, MoveableEntity** enemies,
           actionPerformed = this->move(map, "right");
         }
       }
+    } else if (Keyboard::isKeyPressed(Keyboard::Space)) {
+      actionPerformed = 1; 
     } else {
       int i = 69;
     }
