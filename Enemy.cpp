@@ -108,18 +108,4 @@ void Enemy::advancePos(Map* map, Player* player) {
       succesfulMove = this->move(map, "up");
     }
   }
-
-  // // If no moves where sucessfull try all.
-  // if (!succesfulMove) {
-  //   succesfulMove = this->move(map, "up");
-  // }
-  // if (!succesfulMove) {
-  //   succesfulMove = this->move(map, "left");
-  // }
-  // if (!succesfulMove) {
-  //   succesfulMove = this->move(map, "right");
-  // }
-  // if (!succesfulMove) {
-  //   succesfulMove = this->move(map, "down");
-  // }
 }

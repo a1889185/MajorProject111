@@ -23,11 +23,14 @@ int main() {
 
   bool isLevelComplete = true;
   Map* map;
+  bool isLevelComplete = true;
+  Map* map;
 
   // x | y | damage | health | Colour
-  Player player1(10, 10, 25, 100, Color::Blue);
+  Player* player = new Player(10, 10);
   bool hasPlayerMoved = 0;
 
+  Enemy** enemies = new Enemy*[3];
   Enemy** enemies = new Enemy*[3];
 
   // MAIN GAME WINDOW LOOP
@@ -53,10 +56,37 @@ int main() {
         isLevelComplete = false;
       }
 
+    if (isLevelComplete) {
+      // Generate random map with densisty: 1000=not many paths, 1=allpaths.
+      delete map;
+      map = new Map(1000);
+
+      delete enemies[0];
+      delete enemies[1];
+      delete enemies[2];
+      enemies[0] = new Enemy(5, 5);
+      enemies[1] = new Enemy(15, 15);
+      enemies[2] = new Enemy(5, 15);
+
+      delete player;
+      player = new Player(10, 10, 25, 100, Color::Blue);
+
+      isLevelComplete = false;
+    }
+
+    // Take input from user in player class and move it if allowed.
+    // NO event needs to be passed to it from main.
+    hasPlayerMoved = player->performAction(map, &keyClock);
       // Take input from user in player class and move it if allowed.
       // NO event needs to be passed to it from main.
       hasPlayerMoved = player1.performAction(map, &keyClock);
 
+    if (hasPlayerMoved) {
+      enemies[0]->advancePos(map, player);
+      enemies[1]->advancePos(map, player);
+      enemies[2]->advancePos(map, player);
+      hasPlayerMoved = 0;
+    }
       if (hasPlayerMoved) {
         enemies[0]->advancePos(map, &player1);
         enemies[1]->advancePos(map, &player1);
@@ -64,6 +94,17 @@ int main() {
         hasPlayerMoved = 0;
       }
 
+    window.clear();
+    map->draw(&window);         // Display map.
+    player->draw(&window);      // Display player.
+    enemies[0]->draw(&window);  // Display enemy.
+    enemies[1]->draw(&window);
+    enemies[2]->draw(&window);
+    window.display();
+
+    if (player->getHealth() == 0) {
+      isLevelComplete = true;
+    }
       window.clear();
       map->draw(&window);         // Display map.
       player1.draw(&window);      // Display player.
