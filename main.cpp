@@ -21,14 +21,14 @@ int main() {
   Clock keyClock;  // for setting a delay between keypresses.
   RenderWindow window(VideoMode(windowSize, windowSize), "Rogue");
 
-  // Generate random map with densisty: 1000=not many paths, 1=allpaths.
-  Map map1(1000);
+  bool isLevelComplete = true;
+  Map* map;
 
   // x | y | damage | health | Colour
   Player player1(10, 10, 25, 100, Color::Blue);
   bool hasPlayerMoved = 0;
 
-  Enemy enemy1(5, 5), enemy2(15, 15), enemy3(5, 15);
+  Enemy** enemies = new Enemy*[3];
 
   // MAIN GAME WINDOW LOOP
   Event closeEvent;
@@ -37,24 +37,41 @@ int main() {
       if (closeEvent.type == Event::Closed) window.close();
     }
 
-    // Take input from user in player class and move it if allowed.
-    // NO event needs to be passed to it from main.
-    hasPlayerMoved = player1.performAction(&map1, &keyClock);
+    if (&player1 != nullptr) {
+      if (isLevelComplete) {
+        // Generate random map with densisty: 1000=not many paths, 1=allpaths.
+        delete[] map;
+        map = new Map(100);
 
-    if (hasPlayerMoved) {
-      enemy1.advancePos(&map1, &player1);
-      enemy2.advancePos(&map1, &player1);
-      enemy3.advancePos(&map1, &player1);
-      hasPlayerMoved = 0;
+        delete[] enemies[0];
+        delete[] enemies[1];
+        delete[] enemies[2];
+        enemies[0] = new Enemy(5, 5);
+        enemies[1] = new Enemy(15, 15);
+        enemies[2] = new Enemy(5, 15);
+
+        isLevelComplete = false;
+      }
+
+      // Take input from user in player class and move it if allowed.
+      // NO event needs to be passed to it from main.
+      hasPlayerMoved = player1.performAction(map, &keyClock);
+
+      if (hasPlayerMoved) {
+        enemies[0]->advancePos(map, &player1);
+        enemies[1]->advancePos(map, &player1);
+        enemies[2]->advancePos(map, &player1);
+        hasPlayerMoved = 0;
+      }
+
+      window.clear();
+      map->draw(&window);         // Display map.
+      player1.draw(&window);      // Display player.
+      enemies[0]->draw(&window);  // Display enemy.
+      enemies[1]->draw(&window);
+      enemies[2]->draw(&window);
+      window.display();
     }
-
-    window.clear();
-    map1.draw(&window);     // Display map.
-    player1.draw(&window);  // Display player.
-    enemy1.draw(&window);   // Display enemy.
-    enemy2.draw(&window);
-    enemy3.draw(&window);
-    window.display();
   }
 
   return 0;
