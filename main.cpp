@@ -21,14 +21,17 @@ int main() {
   Clock keyClock;  // for setting a delay between keypresses.
   RenderWindow window(VideoMode(windowSize, windowSize), "Rogue");
 
+  RectangleShape deathScreen(Vector2f(42 * 20, 42 * 20));
+  Color color1 = Color::Red;
+  color1.a = 100;
+  deathScreen.setFillColor(color1);
+
   bool isLevelComplete = true;
-  Map* map;
+  bool hasPlayerMoved = false;
 
-  // x | y | damage | health | Colour
   Player* player = new Player(10, 10);
-  bool hasPlayerMoved = 0;
-
   Enemy** enemies = new Enemy*[3];
+  Map* map;
 
   // MAIN GAME WINDOW LOOP
   Event closeEvent;
@@ -37,7 +40,11 @@ int main() {
       if (closeEvent.type == Event::Closed) window.close();
     }
 
-    if (isLevelComplete) {
+    if (isLevelComplete) {  // reset everything.
+      window.draw(deathScreen);
+      window.display();
+      sleep(milliseconds(500));
+
       // Generate random map with densisty: 1000=not many paths, 1=allpaths.
       delete map;
       map = new Map(1000);
@@ -50,16 +57,16 @@ int main() {
       enemies[2] = new Enemy(5, 15);
 
       delete player;
+      // x | y | damage | health | Colour
       player = new Player(10, 10, 25, 100, Color::Blue);
 
       isLevelComplete = false;
     }
 
     // Take input from user in player class and move it if allowed.
-    // NO event needs to be passed to it from main.
     hasPlayerMoved = player->performAction(map, &keyClock);
 
-    if (hasPlayerMoved) {
+    if (hasPlayerMoved) {  // move enemys if player moved.
       enemies[0]->advancePos(map, player);
       enemies[1]->advancePos(map, player);
       enemies[2]->advancePos(map, player);
