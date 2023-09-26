@@ -16,14 +16,6 @@ Player::Player(int _xPos, int _yPos, int damage, int health, Color _apperance)
   this->shape.setFillColor(apperance);
 }
 
-// ALLREADY DEFINED IN MOVEABLE ENTITY CLASS
-// void Player::attackOpponent(MoveableEntity* opponent) {
-//   if (opponent != nullptr) {
-//     // Remove enemy from game
-//     delete opponent;  // (think this is correct way to do it?)
-//   }
-// }
-
 bool Player::performAction(Map* map, Clock* keyClock) {
   bool actionPerformed = 0;
   // The clock sets a delay after each key input so it doesnt have a spaz.
