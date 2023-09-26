@@ -20,8 +20,8 @@ KostasVersion: main.cpp Entity.cpp NonMoveableEntity.cpp MoveableEntity.cpp Play
 
 
 
-JamesVersion: main.cpp Entity.cpp NonMoveableEntity.cpp MoveableEntity.cpp Player.cpp Map.cpp
+JamesVersion: main.cpp Entity.cpp NonMoveableEntity.cpp MoveableEntity.cpp Player.cpp Map.cpp Enemy.cpp
 
-	clang++ main.cpp Entity.cpp NonMoveableEntity.cpp MoveableEntity.cpp Player.cpp Map.cpp \
+	clang++ main.cpp Entity.cpp NonMoveableEntity.cpp MoveableEntity.cpp Player.cpp Map.cpp Enemy.cpp \
 	\-o main \
 	\-I"/usr/local/Cellar/sfml/2.6.0/include" -L"/usr/local/Cellar/sfml/2.6.0/lib" -lsfml-graphics -lsfml-window -lsfml-system
