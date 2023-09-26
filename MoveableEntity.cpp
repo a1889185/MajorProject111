@@ -6,7 +6,7 @@
 #include "Map.h"
 
 MoveableEntity::MoveableEntity() : Entity::Entity() {
-  this->damage = 10;
+  this->damage = 100;
   this->health = 100;
   this->size = 42;
   this->shape.setSize(sf::Vector2f(size, size));
@@ -15,8 +15,8 @@ MoveableEntity::MoveableEntity() : Entity::Entity() {
 }
 MoveableEntity::MoveableEntity(int _xPos, int _yPos)
     : Entity::Entity(_xPos, _yPos) {
-  this->damage = 0;
-  this->health = 0;
+  this->damage = 100;
+  this->health = 100;
   this->size = 42;
   this->shape.setSize(sf::Vector2f(size, size));
   this->shape.setFillColor(sf::Color::Red);
