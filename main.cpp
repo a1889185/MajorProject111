@@ -16,12 +16,14 @@ using namespace sf;
 // units.
 int u = 42;
 int windowSize = 20 * u;
+int hudWidth = 400;    // HUD width (adjust as needed)
+int totalWidth = windowSize + hudWidth;  // Total window width
 
 int main() {
   int i;
   srand((time(nullptr)));
   Clock keyClock;  // for setting a delay between keypresses.
-  RenderWindow window(VideoMode(windowSize, windowSize), "Rogue");
+  RenderWindow window(VideoMode(totalWidth, windowSize), "Rogue");
 
   RectangleShape deathScreen(Vector2f(42 * 20, 42 * 20));
   Color color1;
@@ -34,8 +36,8 @@ int main() {
   MoveableEntity** enemies = new MoveableEntity*[3];
   Map* map;
 
-  // Create HUD instance 
-  HUD hud; 
+  // Create HUD instance
+  HUD hud;
 
   // MAIN GAME WINDOW LOOP
   Event closeEvent;
@@ -116,7 +118,10 @@ int main() {
       }
     }
 
-    hud.draw(window); 
+    // Draw HUD
+    hud.draw(window);
+
+    // Display the window
     window.display();
   }
   return 0;

@@ -48,6 +48,7 @@ void HUD::updateStats(int health, int remainingLives) {
 
 void HUD::draw(sf::RenderWindow& window) {
     // Draw lives text and bar
+    window.draw(healthText);
     window.draw(livesText);
     window.draw(livesBar);
 }
