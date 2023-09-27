@@ -21,7 +21,7 @@ class HUD {
   void loseLife(); 
   int getRemainingLives(); 
   void updateStats(int health, int remainingLives);
-  void draw(sf::RenderWindow &window); 
+  void draw(sf::RenderWindow& window); 
 
 }; 
 
