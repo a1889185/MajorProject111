@@ -17,34 +17,47 @@ int u = 42;
 int windowSize = 20 * u;
 
 int main() {
+  int i;
   srand((time(nullptr)));
   Clock keyClock;  // for setting a delay between keypresses.
   RenderWindow window(VideoMode(windowSize, windowSize), "Rogue");
 
   RectangleShape deathScreen(Vector2f(42 * 20, 42 * 20));
-  Color color1 = Color::Red;
-  color1.a = 100;
-  deathScreen.setFillColor(color1);
+  Color color1;
 
   bool isLevelComplete = true;
+  bool playerWonLevel = true;
   bool hasPlayerMoved = false;
 
   Player* player = new Player(10, 10);
-  Enemy** enemies = new Enemy*[3];
+  MoveableEntity** enemies = new MoveableEntity*[3];
   Map* map;
 
   // MAIN GAME WINDOW LOOP
   Event closeEvent;
   while (window.isOpen()) {
     while (window.pollEvent(closeEvent)) {
-      if (closeEvent.type == Event::Closed) window.close();
+      if (closeEvent.type == Event::Closed) {
+        window.close();
+      }
     }
 
-    if (isLevelComplete) {  // reset everything.
-      window.draw(deathScreen);
-      window.display();
-      sleep(milliseconds(500));
-
+    if (isLevelComplete) {  // reset everything on new level.
+      if (playerWonLevel) {
+        color1 = Color::Green;
+        color1.a = 100;
+        deathScreen.setFillColor(color1);
+        window.draw(deathScreen);
+        window.display();
+        sleep(milliseconds(500));
+      } else {
+        color1 = Color::Red;
+        color1.a = 100;
+        deathScreen.setFillColor(color1);
+        window.draw(deathScreen);
+        window.display();
+        sleep(milliseconds(500));
+      }
       // Generate random map with densisty: 1000=not many paths, 1=allpaths.
       delete map;
       map = new Map(1000);
@@ -58,37 +71,43 @@ int main() {
 
       delete player;
       // x | y | damage | health | Colour
-      player = new Player(10, 10, 25, 100, Color::Blue);
+      player = new Player(10, 10, 100, 100, Color::Blue);
 
       isLevelComplete = false;
     }
 
     // Take input from user in player class and move it if allowed.
-    hasPlayerMoved = player->performAction(map, &keyClock);
+    hasPlayerMoved = player->performAction(map, &keyClock, enemies, 3);
 
     if (hasPlayerMoved) {  // move enemys if player moved.
-      enemies[0]->advancePos(map, player);
-      enemies[1]->advancePos(map, player);
-      enemies[2]->advancePos(map, player);
+      for (i = 0; i < 3; i++) {
+        if (enemies[i]->getHealth() != 0) {
+          enemies[i]->advancePos(map, player);
+        }
+      }
       hasPlayerMoved = 0;
-
-      cout << enemies[0]->getHealth() << endl; 
-      cout << enemies[1]->getHealth() << endl; 
-      cout << enemies[2]->getHealth() << endl; 
     }
 
-    if (player->getHealth() == 0) {
+    // check if all enemies are dead.
+    playerWonLevel = true;
+    for (i = 0; i < 3; i++) {
+      if (enemies[i]->getHealth() != 0) {
+        playerWonLevel = false;
+      }
+    }
+    if ((player->getHealth() == 0) || (playerWonLevel)) {
       isLevelComplete = true;
     }
 
     window.clear();
-    map->draw(&window);         // Display map.
-    player->draw(&window);      // Display player.
-    enemies[0]->draw(&window);  // Display enemy.
-    enemies[1]->draw(&window);
-    enemies[2]->draw(&window);
+    map->draw(&window);        // Display map.
+    player->draw(&window);     // Display player.
+    for (i = 0; i < 3; i++) {  // Display enemies.
+      if (enemies[i]->getHealth() != 0) {
+        enemies[i]->draw(&window);
+      }
+    }
     window.display();
   }
-
   return 0;
 }

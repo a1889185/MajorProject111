@@ -40,6 +40,10 @@ class MoveableEntity : public Entity {
 
   void draw(sf::RenderWindow* window);
 
+  virtual bool performAction(Map* map, sf::Clock* keyClock,
+                             MoveableEntity** enemies, int numEnemies);
+  virtual void advancePos(Map* map, MoveableEntity* player);
+
   // return 0 if unvalid move. Direction strings: "up" "left" "right" "down"
   bool move(Map* map, std::string direction);
   virtual void attackOpponent(MoveableEntity* opponent);

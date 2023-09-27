@@ -4,6 +4,7 @@
 
 #include "Entity.h"
 #include "Map.h"
+#include "SFML/Graphics.hpp"
 
 MoveableEntity::MoveableEntity() : Entity::Entity() {
   this->damage = 100;
@@ -108,3 +109,9 @@ bool MoveableEntity::move(Map* map, std::string direction) {
 
   return validMove;
 }
+
+bool MoveableEntity::performAction(Map* map, sf::Clock* keyClock,
+                                   MoveableEntity** enemies, int numEnemies) {
+  return 0;
+}
+void MoveableEntity::advancePos(Map* map, MoveableEntity* player) {}

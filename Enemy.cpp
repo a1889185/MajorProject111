@@ -15,16 +15,7 @@ Enemy::Enemy(int _xPos, int _yPos, int damage, int health,
   // this->shape.setTexture(appereance);
 }
 
-// void Enemy::attackOpponent(Player* player) {
-//   // Check if enemy can attack player based on position
-//   if (xPos == player->getPosX() && yPos == player->getPosY()) {
-//     // enemy can attack player, so remove player from game
-//     delete player;  // delete the player object
-//     std::cout << "GAME OVER!"
-//   }
-// }
-
-void Enemy::advancePos(Map* map, Player* player) {
+void Enemy::advancePos(Map* map, MoveableEntity* player) {
   int playerXPos = player->getPosX();
   int playerYPos = player->getPosY();
 
@@ -33,6 +24,7 @@ void Enemy::advancePos(Map* map, Player* player) {
 
   bool succesfulMove = false;
 
+  // for attacking.
   if (playerXPos + 1 == this->xPos && playerYPos == this->yPos) {
     attackOpponent(player);
     move(map, "right");
@@ -47,7 +39,6 @@ void Enemy::advancePos(Map* map, Player* player) {
     move(map, "up");
   } else if (relativeXPos <= 0 && relativeYPos >= 0) {
     // player above right of enemy.
-
     // choose direction which has furthest distance between.
     if (abs(relativeXPos) > abs(relativeYPos)) {
       succesfulMove = this->move(map, "right");
