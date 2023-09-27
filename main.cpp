@@ -9,6 +9,7 @@
 #include "MoveableEntity.h"
 #include "NonMoveableEntity.h"
 #include "Player.h"
+#include "HUD.h"
 
 using namespace sf;
 
@@ -32,6 +33,9 @@ int main() {
   Player* player = new Player(10, 10);
   MoveableEntity** enemies = new MoveableEntity*[3];
   Map* map;
+
+  // Create HUD instance 
+  HUD hud; 
 
   // MAIN GAME WINDOW LOOP
   Event closeEvent;
@@ -88,6 +92,10 @@ int main() {
       hasPlayerMoved = 0;
     }
 
+    // Update HUD based on game state
+    hud.updateStats(player->getHealth(), hud.getRemainingLives());
+
+
     // check if all enemies are dead.
     playerWonLevel = true;
     for (i = 0; i < 3; i++) {
@@ -107,6 +115,8 @@ int main() {
         enemies[i]->draw(&window);
       }
     }
+
+    hud.draw(window); 
     window.display();
   }
   return 0;
