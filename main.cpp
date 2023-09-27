@@ -23,14 +23,13 @@ int main() {
   RenderWindow window(VideoMode(windowSize, windowSize), "Rogue");
 
   RectangleShape deathScreen(Vector2f(42 * 20, 42 * 20));
-  Color color1 = Color::Red;
-  color1.a = 100;
-  deathScreen.setFillColor(color1);
+  Color color1;
 
   bool isLevelComplete = true;
+  bool playerWonLevel = true;
   bool hasPlayerMoved = false;
 
-  Player* player = new Player(10, 10, 100, 100, Color::Blue);
+  Player* player = new Player(10, 10);
   MoveableEntity** enemies = new MoveableEntity*[3];
   Map* map;
 
@@ -44,10 +43,21 @@ int main() {
     }
 
     if (isLevelComplete) {  // reset everything on new level.
-      window.draw(deathScreen);
-      window.display();
-      sleep(milliseconds(500));
-
+      if (playerWonLevel) {
+        color1 = Color::Green;
+        color1.a = 100;
+        deathScreen.setFillColor(color1);
+        window.draw(deathScreen);
+        window.display();
+        sleep(milliseconds(500));
+      } else {
+        color1 = Color::Red;
+        color1.a = 100;
+        deathScreen.setFillColor(color1);
+        window.draw(deathScreen);
+        window.display();
+        sleep(milliseconds(500));
+      }
       // Generate random map with densisty: 1000=not many paths, 1=allpaths.
       delete map;
       map = new Map(1000);
@@ -73,14 +83,19 @@ int main() {
       for (i = 0; i < 3; i++) {
         if (enemies[i]->getHealth() != 0) {
           enemies[i]->advancePos(map, player);
-          std::cout << enemies[i]->getHealth() << " ";
         }
       }
-      std::cout << "\n";
       hasPlayerMoved = 0;
     }
 
-    if (player->getHealth() == 0) {
+    // check if all enemies are dead.
+    playerWonLevel = true;
+    for (i = 0; i < 3; i++) {
+      if (enemies[i]->getHealth() != 0) {
+        playerWonLevel = false;
+      }
+    }
+    if ((player->getHealth() == 0) || (playerWonLevel)) {
       isLevelComplete = true;
     }
 
