@@ -57,6 +57,7 @@ int main() {
         window.draw(deathScreen);
         window.display();
         sleep(milliseconds(500));
+        //hud.setScore(50); 
       } else {
         color1 = Color::Red;
         color1.a = 100;
@@ -86,12 +87,19 @@ int main() {
     int numEnemies = 3; 
     // Take input from user in player class and move it if allowed.
     hasPlayerMoved = player->performAction(map, &keyClock, enemies, numEnemies);
-
+    
     if (hasPlayerMoved) {  // move enemys if player moved.
       stepsCount++;
       for (i = 0; i < 3; i++) {
         if (enemies[i]->getHealth() != 0) {
           enemies[i]->advancePos(map, player);
+          if (player->getHealth() == 200) {
+            hud.setHealth(200); 
+          } else if (player->getHealth() == 100) {
+            hud.setHealth(100);
+          } else if (player->getHealth() == 0) {
+            hud.setHealth(0);
+          }
         } else if (enemies[i]->getHealth() == 0) {
           numEnemies--; 
           hud.setEnemies(numEnemies); 

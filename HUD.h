@@ -19,12 +19,22 @@ class HUD {
 
  public:
   HUD();
-  void loseEnemy();
-  int getEnemies(); 
-  void setEnemies(int numEnemies);
-  void updateStats(int newHealth, int newEnemies, int newStepsCount); 
-  void draw(sf::RenderWindow &window); 
 
-}; 
+  int getHealth(); 
+  void setHealth(int health); 
+
+  int getEnemies(); 
+  void setEnemies(int enemies);
+
+  int getScore();
+  void setScore(int score);
+
+  int getSteps();
+  void setSteps(int stepsCount);
+
+  void loseEnemy();
+  void updateStats(int newHealth, int newEnemies, int newStepsCount);
+  void draw(sf::RenderWindow &window);
+};
 
 #endif
