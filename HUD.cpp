@@ -76,7 +76,7 @@ void HUD::draw(sf::RenderWindow &window) {
 
   // Draw the health bar
   sf::RectangleShape healthBar(
-      sf::Vector2f(400 * (health / 100.0f), 20));  // Adjust size as needed
+      sf::Vector2f(400 * (health / 300.0f), 20));  // Adjust size as needed
   healthBar.setFillColor(sf::Color::Blue);         // Adjust color as needed
   healthBar.setPosition(841, 60);                  // Adjust position as needed
   window.draw(healthBar);

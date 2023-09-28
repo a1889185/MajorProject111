@@ -51,6 +51,7 @@ int main() {
 
     if (isLevelComplete) {  // reset everything on new level.
       if (playerWonLevel) {
+        hud.setEnemies(3); 
         color1 = Color::Green;
         color1.a = 100;
         deathScreen.setFillColor(color1);
@@ -59,6 +60,7 @@ int main() {
         sleep(milliseconds(500));
         //hud.setScore(50); 
       } else {
+        hud.setEnemies(3); 
         color1 = Color::Red;
         color1.a = 100;
         deathScreen.setFillColor(color1);
@@ -79,7 +81,7 @@ int main() {
 
       delete player;
       // x | y | damage | health | Colour
-      player = new Player(10, 10, 100, 100, Color::Blue);
+      player = new Player(10, 10, 100, 300, Color::Blue);
 
       isLevelComplete = false;
     }
@@ -93,6 +95,7 @@ int main() {
       for (i = 0; i < 3; i++) {
         if (enemies[i]->getHealth() != 0) {
           enemies[i]->advancePos(map, player);
+          // check if attacked opponent in process
           if (player->getHealth() == 200) {
             hud.setHealth(200); 
           } else if (player->getHealth() == 100) {
