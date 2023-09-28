@@ -84,8 +84,10 @@ int main() {
 
     // Take input from user in player class and move it if allowed.
     hasPlayerMoved = player->performAction(map, &keyClock, enemies, 3);
+    int stepsCount = 0; // track number of steps 
 
     if (hasPlayerMoved) {  // move enemys if player moved.
+      stepsCount++; 
       for (i = 0; i < 3; i++) {
         if (enemies[i]->getHealth() != 0) {
           enemies[i]->advancePos(map, player);
@@ -95,7 +97,7 @@ int main() {
     }
 
     // Update HUD based on game state
-    hud.updateStats(player->getHealth(), hud.getRemainingLives());
+    hud.updateStats(player->getHealth(), hud.getRemainingLives(), stepsCount);
 
 
     // check if all enemies are dead.
@@ -118,7 +120,7 @@ int main() {
       }
     }
 
-    // Draw HUD
+    // Draw the HUD to the right of the game window
     hud.draw(window);
 
     // Display the window

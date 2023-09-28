@@ -9,19 +9,20 @@ class HUD {
   sf::Font font;
   sf::Text healthText; 
   sf::Text livesText;
+  sf::Text scoreText; 
+  sf::Text stepsText;
   sf::RectangleShape livesBar;
+  int health; 
   int remainingLives;
-  int playerHealth; 
-  int playerDamage; 
-  int enemyHealth; 
-  int enemyDamage; 
+  int score; 
+  int stepsCount; 
 
  public:
   HUD(); 
   void loseLife(); 
   int getRemainingLives(); 
-  void updateStats(int health, int remainingLives);
-  void draw(sf::RenderWindow& window); 
+  void updateStats(int newHealth, int newRemainingLives, int newStepsCount); 
+  void draw(sf::RenderWindow &window); 
 
 }; 
 
