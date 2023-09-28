@@ -16,20 +16,20 @@ HUD::HUD() {
     livesText.setFont(font);
     livesText.setCharacterSize(50);
     livesText.setFillColor(sf::Color::White);
-    livesText.setPosition(841, 30);
+    livesText.setPosition(841, 120);
 
     // Initialize score text
     scoreText.setFont(font);
     scoreText.setCharacterSize(50);
     scoreText.setFillColor(sf::Color::White);
-    scoreText.setPosition(841, 60);
+    scoreText.setPosition(841, 240);
 
     // Initialize steps text
     stepsText.setFont(font);
     stepsText.setCharacterSize(50);
     stepsText.setFillColor(sf::Color::White);
     stepsText.setOutlineColor(sf::Color::White);
-    stepsText.setPosition(841, 90);
+    stepsText.setPosition(841, 320);
 
     health = 100;            // Initial health
     remainingLives = 3;      // Initial lives
@@ -69,14 +69,14 @@ void HUD::draw(sf::RenderWindow &window) {
     // Draw the health bar
     sf::RectangleShape healthBar(sf::Vector2f(200 * (health / 100.0f), 20)); // Adjust size as needed
     healthBar.setFillColor(sf::Color::Green);  // Adjust color as needed
-    healthBar.setPosition(841, 150);            // Adjust position as needed
+    healthBar.setPosition(841, 60);           // Adjust position as needed
     window.draw(healthBar);
 
     // Draw three vertical lines for lives
     for (int i = 0; i < remainingLives; i++) {
         sf::RectangleShape lifeLine(sf::Vector2f(5, 30)); // Adjust size as needed
         lifeLine.setFillColor(sf::Color::Red);            // Adjust color as needed
-        lifeLine.setPosition(841 + i * 15, 200);           // Adjust position and spacing as needed
+        lifeLine.setPosition(841 + i * 15, 180);          // Adjust position and spacing as needed
         window.draw(lifeLine);
     }
 }
