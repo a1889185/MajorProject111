@@ -50,16 +50,19 @@ int main() {
     }
 
     if (isLevelComplete) {  // reset everything on new level.
-      if (playerWonLevel) {
+      if (playerWonLevel) { 
+        hud.setScore(50); 
+        hud.setSteps(0); 
         hud.setEnemies(3); 
         color1 = Color::Green;
         color1.a = 100;
         deathScreen.setFillColor(color1);
         window.draw(deathScreen);
         window.display();
-        sleep(milliseconds(500));
-        //hud.setScore(50); 
+        sleep(milliseconds(500)); 
       } else {
+        hud.setScore(50); 
+        hud.setSteps(0); 
         hud.setEnemies(3); 
         color1 = Color::Red;
         color1.a = 100;
