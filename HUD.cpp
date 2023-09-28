@@ -55,9 +55,10 @@ void HUD::loseEnemy() {
   }
 }
 
-void HUD::updateStats(int newHealth, int newEnemies, int newStepsCount) {
+void HUD::updateStats(int newHealth, int newEnemies, int newScore, int newStepsCount) {
   health = newHealth;
   enemies = newEnemies;
+  score = newScore; 
   stepsCount = newStepsCount;
 
   // Update the text

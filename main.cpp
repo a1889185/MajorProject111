@@ -41,7 +41,6 @@ int main() {
 
   // MAIN GAME WINDOW LOOP
   Event closeEvent;
-  int stepsCount = 0; // track number of steps 
   while (window.isOpen()) {
     while (window.pollEvent(closeEvent)) {
       if (closeEvent.type == Event::Closed) {
@@ -92,9 +91,15 @@ int main() {
     int numEnemies = 3; 
     // Take input from user in player class and move it if allowed.
     hasPlayerMoved = player->performAction(map, &keyClock, enemies, numEnemies);
-    
+
+    int score = hud.getScore(); 
+    int steps = hud.getSteps(); 
+
     if (hasPlayerMoved) {  // move enemys if player moved.
-      stepsCount++;
+      score--; 
+      hud.setScore(score); 
+      steps++;
+      hud.setSteps(steps); 
       for (i = 0; i < 3; i++) {
         if (enemies[i]->getHealth() != 0) {
           enemies[i]->advancePos(map, player);
@@ -115,7 +120,7 @@ int main() {
     }
 
     // Update HUD based on game state
-    hud.updateStats(player->getHealth(), hud.getEnemies(), stepsCount);
+    hud.updateStats(player->getHealth(), hud.getEnemies(), hud.getScore(), hud.getSteps());
 
 
     // check if all enemies are dead.

@@ -33,7 +33,7 @@ class HUD {
   void setSteps(int stepsCount);
 
   void loseEnemy();
-  void updateStats(int newHealth, int newEnemies, int newStepsCount);
+  void updateStats(int newHealth, int newEnemies, int newScore, int newStepsCount);
   void draw(sf::RenderWindow &window);
 };
 
