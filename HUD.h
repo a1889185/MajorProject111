@@ -8,20 +8,21 @@ class HUD {
  private:
   sf::Font font;
   sf::Text healthText; 
-  sf::Text livesText;
+  sf::Text enemiesText;
   sf::Text scoreText; 
-  sf::Text stepsText;
-  sf::RectangleShape livesBar;
+  sf::Text stepsCountText;
+  sf::RectangleShape enemiesBar;
   int health; 
-  int remainingLives;
+  int enemies;
   int score; 
   int stepsCount; 
 
  public:
-  HUD(); 
-  void loseLife(); 
-  int getRemainingLives(); 
-  void updateStats(int newHealth, int newRemainingLives, int newStepsCount); 
+  HUD();
+  void loseEnemy();
+  int getEnemies(); 
+  void setEnemies(int numEnemies);
+  void updateStats(int newHealth, int newEnemies, int newStepsCount); 
   void draw(sf::RenderWindow &window); 
 
 }; 

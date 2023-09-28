@@ -12,11 +12,11 @@ HUD::HUD() {
     healthText.setFillColor(sf::Color::White);
     healthText.setPosition(841, 0);
 
-    // Initialize lives text
-    livesText.setFont(font);
-    livesText.setCharacterSize(50);
-    livesText.setFillColor(sf::Color::White);
-    livesText.setPosition(841, 120);
+    // Initialize enemies text
+    enemiesText.setFont(font);
+    enemiesText.setCharacterSize(50);
+    enemiesText.setFillColor(sf::Color::White);
+    enemiesText.setPosition(841, 120);
 
     // Initialize score text
     scoreText.setFont(font);
@@ -25,58 +25,62 @@ HUD::HUD() {
     scoreText.setPosition(841, 240);
 
     // Initialize steps text
-    stepsText.setFont(font);
-    stepsText.setCharacterSize(50);
-    stepsText.setFillColor(sf::Color::White);
-    stepsText.setOutlineColor(sf::Color::White);
-    stepsText.setPosition(841, 320);
+    stepsCountText.setFont(font);
+    stepsCountText.setCharacterSize(50);
+    stepsCountText.setFillColor(sf::Color::White);
+    stepsCountText.setOutlineColor(sf::Color::White);
+    stepsCountText.setPosition(841, 320);
 
     health = 100;            // Initial health
-    remainingLives = 3;      // Initial lives
+    enemies = 3;             // Initial enemies
     score = 50;              // Initial score
     stepsCount = 0;          // Initial steps count
 }
 
-void HUD::loseLife() {
-    if (remainingLives > 0) {
-        remainingLives--;
+void HUD::loseEnemy() {
+    if (enemies > 0) {
+        enemies--;
     }
 }
 
-int HUD::getRemainingLives() {
-    return remainingLives;
+int HUD::getEnemies() {
+    return enemies;
 }
 
-void HUD::updateStats(int newHealth, int newRemainingLives, int newStepsCount) {
+void HUD::setEnemies(int numEnemies) {
+    this->enemies = numEnemies;
+}
+
+void HUD::updateStats(int newHealth, int newEnemies, int newStepsCount) {
     health = newHealth;
-    remainingLives = newRemainingLives;
+    enemies = newEnemies;
     stepsCount = newStepsCount;
 
     // Update the text
-    healthText.setString("Health: " + std::to_string(health));
-    livesText.setString("Lives: " + std::to_string(remainingLives));
+    healthText.setString("Health: ");
+    enemiesText.setString("Enemies: ");
     scoreText.setString("Score: " + std::to_string(50 - stepsCount));
-    stepsText.setString("Steps: " + std::to_string(stepsCount));
+    stepsCountText.setString("Steps: " + std::to_string(stepsCount));
 }
 
 void HUD::draw(sf::RenderWindow &window) {
     // Draw all HUD elements
     window.draw(healthText);
-    window.draw(livesText);
+    window.draw(enemiesText);
     window.draw(scoreText);
-    window.draw(stepsText);
+    window.draw(stepsCountText);
 
     // Draw the health bar
-    sf::RectangleShape healthBar(sf::Vector2f(200 * (health / 100.0f), 20)); // Adjust size as needed
-    healthBar.setFillColor(sf::Color::Green);  // Adjust color as needed
+    sf::RectangleShape healthBar(sf::Vector2f(400 * (health / 100.0f), 20)); // Adjust size as needed
+    healthBar.setFillColor(sf::Color::Blue);  // Adjust color as needed
     healthBar.setPosition(841, 60);           // Adjust position as needed
     window.draw(healthBar);
 
-    // Draw three vertical lines for lives
-    for (int i = 0; i < remainingLives; i++) {
-        sf::RectangleShape lifeLine(sf::Vector2f(5, 30)); // Adjust size as needed
-        lifeLine.setFillColor(sf::Color::Red);            // Adjust color as needed
-        lifeLine.setPosition(841 + i * 15, 180);          // Adjust position and spacing as needed
-        window.draw(lifeLine);
+    // Draw three vertical lines for enemies
+    for (int i = 0; i < enemies; i++) {
+        sf::RectangleShape enemyLifeLine(sf::Vector2f(5, 30)); // Adjust size as needed
+        enemyLifeLine.setFillColor(sf::Color::Red);            // Adjust color as needed
+        enemyLifeLine.setPosition(842 + i * 15, 180);          // Adjust position and spacing as needed
+        window.draw(enemyLifeLine);
     }
 }
