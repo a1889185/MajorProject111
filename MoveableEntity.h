@@ -38,7 +38,7 @@ class MoveableEntity : public Entity {
   int getPosX();
   int getPosY();
 
-  void draw(sf::RenderWindow* window);
+  void draw(RenderWindow* window);
 
   virtual bool performAction(Map* map, sf::Clock* keyClock,
                              MoveableEntity** enemies, int numEnemies);

@@ -19,7 +19,8 @@ class Enemy : public MoveableEntity {
   Enemy(int _xPos, int _yPos);
   Enemy(int _xPos, int _yPos, int damage, int health, Sprite apperance);
 
-  // void attackOpponent(Player* player);
+  void draw(RenderWindow* window);
+
   void advancePos(Map* map, MoveableEntity* player);
 };
 
