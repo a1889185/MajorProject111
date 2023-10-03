@@ -41,5 +41,7 @@ sf::RectangleShape NonMoveableEntity::getShape() { return *(this->shape); }
 std::string NonMoveableEntity::getType() { return this->type; }
 void NonMoveableEntity::setType(std::string _type) { this->type = _type; }
 
+void NonMoveableEntity::draw(sf::RenderWindow* window) { window->draw(*shape); }
+
 int NonMoveableEntity::getPosX() { return xPos; }
 int NonMoveableEntity::getPosY() { return yPos; }

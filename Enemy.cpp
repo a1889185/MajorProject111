@@ -15,6 +15,8 @@ Enemy::Enemy(int _xPos, int _yPos, int damage, int health,
   // this->shape.setTexture(appereance);
 }
 
+void Enemy::draw(sf::RenderWindow* window) { window->draw(shape); }
+
 void Enemy::advancePos(Map* map, MoveableEntity* player) {
   int playerXPos = player->getPosX();
   int playerYPos = player->getPosY();

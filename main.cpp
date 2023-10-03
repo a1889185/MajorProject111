@@ -60,7 +60,7 @@ int main() {
       }
       // Generate random map with densisty: 1000=not many paths, 1=allpaths.
       delete map;
-      map = new Map(1000);
+      map = new Map(999);
 
       delete enemies[0];
       delete enemies[1];
