@@ -2,7 +2,7 @@
 
 HUD::HUD() {
   // Load the font
-  if (!font.loadFromFile("PixelifySans-VariableFont_wght.ttf")) {
+  if (!font.loadFromFile("Assets/PixelifySans-VariableFont_wght.ttf")) {
     // Handle font loading error
   }
 
@@ -55,10 +55,11 @@ void HUD::loseEnemy() {
   }
 }
 
-void HUD::updateStats(int newHealth, int newEnemies, int newScore, int newStepsCount) {
+void HUD::updateStats(int newHealth, int newEnemies, int newScore,
+                      int newStepsCount) {
   health = newHealth;
   enemies = newEnemies;
-  score = newScore; 
+  score = newScore;
   stepsCount = newStepsCount;
 
   // Update the text
@@ -68,19 +69,19 @@ void HUD::updateStats(int newHealth, int newEnemies, int newScore, int newStepsC
   stepsCountText.setString("Steps: " + std::to_string(stepsCount));
 }
 
-void HUD::draw(sf::RenderWindow &window) {
+void HUD::draw(sf::RenderWindow* window) {
   // Draw all HUD elements
-  window.draw(healthText);
-  window.draw(enemiesText);
-  window.draw(scoreText);
-  window.draw(stepsCountText);
+  window->draw(healthText);
+  window->draw(enemiesText);
+  window->draw(scoreText);
+  window->draw(stepsCountText);
 
   // Draw the health bar
   sf::RectangleShape healthBar(
       sf::Vector2f(400 * (health / 300.0f), 20));  // Adjust size as needed
   healthBar.setFillColor(sf::Color::Blue);         // Adjust color as needed
   healthBar.setPosition(841, 60);                  // Adjust position as needed
-  window.draw(healthBar);
+  window->draw(healthBar);
 
   // Draw three vertical lines for enemies
   for (int i = 0; i < enemies; i++) {
@@ -89,6 +90,6 @@ void HUD::draw(sf::RenderWindow &window) {
     enemyLifeLine.setFillColor(sf::Color::Red);  // Adjust color as needed
     enemyLifeLine.setPosition(842 + i * 15,
                               180);  // Adjust position and spacing as needed
-    window.draw(enemyLifeLine);
+    window->draw(enemyLifeLine);
   }
 }

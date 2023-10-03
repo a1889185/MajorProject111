@@ -7,23 +7,23 @@
 class HUD {
  private:
   sf::Font font;
-  sf::Text healthText; 
+  sf::Text healthText;
   sf::Text enemiesText;
-  sf::Text scoreText; 
+  sf::Text scoreText;
   sf::Text stepsCountText;
   sf::RectangleShape enemiesBar;
-  int health; 
+  int health;
   int enemies;
-  int score; 
-  int stepsCount; 
+  int score;
+  int stepsCount;
 
  public:
   HUD();
 
-  int getHealth(); 
-  void setHealth(int health); 
+  int getHealth();
+  void setHealth(int health);
 
-  int getEnemies(); 
+  int getEnemies();
   void setEnemies(int enemies);
 
   int getScore();
@@ -33,8 +33,9 @@ class HUD {
   void setSteps(int stepsCount);
 
   void loseEnemy();
-  void updateStats(int newHealth, int newEnemies, int newScore, int newStepsCount);
-  void draw(sf::RenderWindow &window);
+  void updateStats(int newHealth, int newEnemies, int newScore,
+                   int newStepsCount);
+  void draw(sf::RenderWindow* window);
 };
 
 #endif
