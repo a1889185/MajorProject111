@@ -1,5 +1,12 @@
 #include "HUD.h"
 
+#include <SFML/Graphics.hpp>
+#include <ctime>
+#include <fstream>
+#include <vector>
+
+typedef std::vector<ScoreData> vector_scores;
+
 HUD::HUD() {
   // Load the font
   if (!font.loadFromFile("Assets/PixelifySans-VariableFont_wght.ttf")) {
@@ -92,4 +99,24 @@ void HUD::draw(sf::RenderWindow* window) {
                               180);  // Adjust position and spacing as needed
     window->draw(enemyLifeLine);
   }
+}
+
+void HUD::writeToFile(std::string filename) {
+  ScoreData sd1;                          // Score to write to txt.
+  std::time_t time = std::time(nullptr);  // Add time of score.
+  std::tm* timeInfo = std::localtime(&time);
+  std::strftime(sd1.timeString, sizeof(sd1.timeString), "%Y-%m-%d %H:%M:%S",
+                timeInfo);
+  sd1._score = this->score;
+
+  // Add score to static scores vector.
+  // HUD::scores.push_back(sd1);
+  std::ofstream ScoreRecord(filename, std::ios::app);
+
+  // vector_scores::iterator itr;
+
+  ScoreRecord << "A score of " << sd1._score << " was acheived on "
+              << sd1.timeString << std::endl;
+
+  ScoreRecord.close();
 }
