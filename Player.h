@@ -12,9 +12,9 @@ using namespace sf;
 
 class Player : public MoveableEntity {
  private:
-  Color apperance;
-  Texture playerTexture;
-  Sprite playerSprite;
+  // Color apperance;
+  // Texture playerTexture;
+  // Sprite playerSprite;
 
  public:
   Player();
