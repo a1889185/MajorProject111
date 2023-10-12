@@ -108,8 +108,6 @@ int main() {
           hud.setHealth(player->getHealth());
         } else if (enemies[i]->getHealth() == 0) {
           hud.setEnemies(--numEnemies);
-          score += 10;
-          hud.setScore(score);
         }
       }
       hasPlayerMoved = 0;
