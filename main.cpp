@@ -5,6 +5,7 @@
 
 #include "Enemy.h"
 #include "Entity.h"
+#include "HUD.h"
 #include "Map.h"
 #include "MoveableEntity.h"
 #include "NonMoveableEntity.h"
@@ -15,12 +16,14 @@ using namespace sf;
 // units.
 int u = 42;
 int windowSize = 20 * u;
+int hudWidth = 400;                      // HUD width (adjust as needed)
+int totalWidth = windowSize + hudWidth;  // Total window width
 
 int main() {
   int i;
   srand((time(nullptr)));
   Clock keyClock;  // for setting a delay between keypresses.
-  RenderWindow window(VideoMode(windowSize, windowSize), "Rogue");
+  RenderWindow window(VideoMode(totalWidth, windowSize), "Rogue");
 
   RectangleShape deathScreen(Vector2f(42 * 20, 42 * 20));
   Color color1;
@@ -33,6 +36,9 @@ int main() {
   MoveableEntity** enemies = new MoveableEntity*[3];
   Map* map;
 
+  // Create HUD instance
+  HUD hud;
+
   // MAIN GAME WINDOW LOOP
   Event closeEvent;
   while (window.isOpen()) {
@@ -44,6 +50,9 @@ int main() {
 
     if (isLevelComplete) {  // reset everything on new level.
       if (playerWonLevel) {
+        hud.setScore(50);
+        hud.setSteps(0);
+        hud.setEnemies(3);
         color1 = Color::Green;
         color1.a = 100;
         deathScreen.setFillColor(color1);
@@ -51,6 +60,9 @@ int main() {
         window.display();
         sleep(milliseconds(500));
       } else {
+        hud.setScore(50);
+        hud.setSteps(0);
+        hud.setEnemies(3);
         color1 = Color::Red;
         color1.a = 100;
         deathScreen.setFillColor(color1);
@@ -71,22 +83,37 @@ int main() {
 
       delete player;
       // x | y | damage | health | Colour
-      player = new Player(10, 10, 100, 100, Color::Blue);
+      player = new Player(10, 10, 100, 300, Color::Blue);
 
       isLevelComplete = false;
     }
 
+    int numEnemies = 3;
     // Take input from user in player class and move it if allowed.
-    hasPlayerMoved = player->performAction(map, &keyClock, enemies, 3);
+    hasPlayerMoved = player->performAction(map, &keyClock, enemies, numEnemies);
+
+    int score = hud.getScore();
+    int steps = hud.getSteps();
 
     if (hasPlayerMoved) {  // move enemys if player moved.
+      hud.setScore(--score);
+      hud.setSteps(++steps);
       for (i = 0; i < 3; i++) {
         if (enemies[i]->getHealth() != 0) {
           enemies[i]->advancePos(map, player);
+
+          hud.setHealth(player->getHealth());
+        } else if (enemies[i]->getHealth() == 0) {
+          --numEnemies;
+          hud.setEnemies(numEnemies);
         }
       }
       hasPlayerMoved = 0;
     }
+
+    // Update HUD based on game state
+    hud.updateStats(player->getHealth(), hud.getEnemies(), hud.getScore(),
+                    hud.getSteps());
 
     // check if all enemies are dead.
     playerWonLevel = true;
@@ -101,12 +128,15 @@ int main() {
 
     window.clear();
     map->draw(&window);        // Display map.
+    hud.draw(&window);         // Draw the HUD to the right of the game window
     player->draw(&window);     // Display player.
     for (i = 0; i < 3; i++) {  // Display enemies.
       if (enemies[i]->getHealth() != 0) {
         enemies[i]->draw(&window);
       }
     }
+
+    // Display the window
     window.display();
   }
   return 0;

@@ -8,10 +8,17 @@
 
 using namespace sf;
 
-Player::Player() : MoveableEntity() {}
-Player::Player(int _xPos, int _yPos) : MoveableEntity(_xPos, _yPos) {}
+Player::Player() : MoveableEntity() {
+  this->health = 300;
+}
+
+Player::Player(int _xPos, int _yPos) : MoveableEntity(_xPos, _yPos) {
+  this->health = 300;
+}
+
 Player::Player(int _xPos, int _yPos, int damage, int health, Color _apperance)
     : MoveableEntity(_xPos, _yPos, damage, health) {
+  this->health = 300;
   this->apperance = _apperance;
   this->shape.setFillColor(apperance);
 }
