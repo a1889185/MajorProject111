@@ -1,5 +1,6 @@
 #include <iostream>
 #include "./PlayerTest.h"
+#include "./EnemyTest.h"
 #include "./MoveableEntityTest.h"
 #include "./HUDTest.h"
 #include "./MapTest.h"
@@ -10,6 +11,9 @@ using namespace std;
 int main() {
   PlayerTest playerTest;
   playerTest.runTests();
+
+  EnemyTest EnemyTest;
+  EnemyTest.runTests();
 
   MoveableEntityTest moveableEntityTest;
   moveableEntityTest.runTests();
