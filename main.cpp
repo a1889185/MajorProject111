@@ -49,6 +49,9 @@ int main() {
     }
 
     if (isLevelComplete) {  // reset everything on new level.
+
+      hud.writeToFile("ScoreRecord.txt");  // add score to file.
+
       if (playerWonLevel) {
         hud.setScore(50);
         hud.setSteps(0);
@@ -104,8 +107,7 @@ int main() {
 
           hud.setHealth(player->getHealth());
         } else if (enemies[i]->getHealth() == 0) {
-          --numEnemies;
-          hud.setEnemies(numEnemies);
+          hud.setEnemies(--numEnemies);
         }
       }
       hasPlayerMoved = 0;
@@ -122,6 +124,7 @@ int main() {
         playerWonLevel = false;
       }
     }
+
     if ((player->getHealth() == 0) || (playerWonLevel)) {
       isLevelComplete = true;
     }
@@ -135,9 +138,7 @@ int main() {
         enemies[i]->draw(&window);
       }
     }
-
-    // Display the window
-    window.display();
+    window.display();  // Display the window
   }
   return 0;
 }

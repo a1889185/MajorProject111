@@ -3,6 +3,13 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
+#include <vector>
+
+typedef struct {
+  int _score;
+  char timeString[100];
+} ScoreData;
+typedef std::vector<ScoreData> vector_scores;
 
 class HUD {
  private:
@@ -16,6 +23,9 @@ class HUD {
   int enemies;
   int score;
   int stepsCount;
+
+  // read write to txt file.
+  static vector_scores scores;
 
  public:
   HUD();
@@ -36,6 +46,8 @@ class HUD {
   void updateStats(int newHealth, int newEnemies, int newScore,
                    int newStepsCount);
   void draw(sf::RenderWindow* window);
+
+  void writeToFile(std::string filename);
 };
 
 #endif
