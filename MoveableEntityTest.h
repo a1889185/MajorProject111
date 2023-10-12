@@ -20,9 +20,9 @@ class MoveableEntityTest {
     MoveableEntity entity(30, 40, 10, 10);
     int posX = entity.getPosX();
     if (posX == 30) {
-      cout << "MoveableEntity getPosX Test: Passed" << endl;
+      cout << "Test MoveableEntity getPosX passed!" << endl;
     } else {
-      cout << "MoveableEntity getPosX Test: Failed" << endl;
+      cout << "Test MoveableEntity getPosX failed!" << endl;
     }
   }
 
@@ -30,9 +30,9 @@ class MoveableEntityTest {
     MoveableEntity entity(30, 40, 10, 10);
     int posY = entity.getPosY();
     if (posY == 40) {
-      cout << "MoveableEntity getPosY Test: Passed" << endl;
+      cout << "Test MoveableEntity getPosY passed!" << endl;
     } else {
-      cout << "MoveableEntity getPosY Test: Failed" << endl;
+      cout << "Test MoveableEntity getPosY failed!" << endl;
     }
   }
 

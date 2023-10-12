@@ -16,17 +16,17 @@ int main() {
   // NonMoveableEntityTest nonMoveableEntityTest;
   // nonMoveableEntityTest.runTests();
 
-  // MapTest mapTest;
-  // mapTest.runTests();
+  MapTest mapTest;
+  mapTest.runTests();
 
-  // PlayerTest playerTest;
-  // playerTest.runTests();
+  PlayerTest playerTest;
+  playerTest.runTests();
 
-  // EnemyTest EnemyTest;
-  // EnemyTest.runTests();
+  EnemyTest EnemyTest;
+  EnemyTest.runTests();
 
-  // HUDTest hudTest;
-  // hudTest.runTests();
+  HUDTest hudTest;
+  hudTest.runTests();
 
   cout << "All tests completed." << endl;
 

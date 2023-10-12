@@ -18,7 +18,7 @@ class NonMoveableEntityTest {
 
  private:
   void testGetPosX() {
-    MoveableEntity entity(30, 40);
+    NonMoveableEntity entity(30, 40, "TestType");
     int posX = entity.getPosX();
     if (posX == 30) {
       cout << "NonMoveableEntity getPosX Test: Passed" << endl;
@@ -28,7 +28,7 @@ class NonMoveableEntityTest {
   }
 
   void testGetPosY() {
-    MoveableEntity entity(30, 40);
+    NonMoveableEntity entity(30, 40, "TestType");
     int posY = entity.getPosY();
     if (posY == 40) {
       cout << "NonMoveableEntity getPosY Test: Passed" << endl;
@@ -49,15 +49,15 @@ class NonMoveableEntityTest {
 
   void testShapeGetter() {
     NonMoveableEntity entity(10, 10, "Obstacle");
-    sf::RectangleShape shape = entity.getShape();
+    RectangleShape shape = entity.getShape();
 
     // Verify that the shape properties are as expected
     if (shape.getSize() != sf::Vector2f(42, 42)) {
-      std::cout << "Test NonMoveableEntity ShapeGetter failed: Incorrect size!" << std::endl;
+      cout << "Test NonMoveableEntity ShapeGetter failed: Incorrect size!" << endl;
     } else if (shape.getPosition() != sf::Vector2f(10, 10)) {
-      std::cout << "Test NonMoveableEntity ShapeGetter failed: Incorrect position!" << std::endl;
+      cout << "Test NonMoveableEntity ShapeGetter failed: Incorrect position!" << endl;
     } else {
-      std::cout << "Test NonMoveableEntity ShapeGetter passed!" << std::endl;
+      cout << "Test NonMoveableEntity ShapeGetter passed!" << endl;
     }
   }
 };
