@@ -9,9 +9,6 @@
 class NonMoveableEntity : public Entity {
  protected:
   int size;  // standard unit length.
-  sf::RectangleShape* shape;
-  sf::Color apperance;
-  std::string type;
 
  public:
   NonMoveableEntity();
