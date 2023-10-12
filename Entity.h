@@ -3,12 +3,16 @@
 
 #include <SFML/Graphics.hpp>
 
+using namespace sf;
+
 class Entity {
  protected:
   int xPos;
   int yPos;
 
  public:
+  Texture texture;
+  Sprite sprite;
   Entity();
   Entity(int _xPos, int _yPos);
 

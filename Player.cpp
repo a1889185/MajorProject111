@@ -11,19 +11,19 @@ using namespace sf;
 
 Player::Player() : MoveableEntity()
 {
-  this->playerSprite.setTexture(playerTexture);
-  if (!playerTexture.loadFromFile("Assets/Player.png"))
+  this->texture.loadFromFile("Assets/Player.png");
+  if (!texture.loadFromFile("Assets/Player.png"))
   {
     std::cout << "Error loading player image." << std::endl;
   }
-  this->playerSprite.setTexture(playerTexture);
+  this->sprite.setTexture(texture);
   this->health = 300;
 }
 
 Player::Player(int _xPos, int _yPos) : MoveableEntity(_xPos, _yPos)
 {
-  this->playerSprite.setTexture(playerTexture);
-  if (!playerTexture.loadFromFile("Assets/Player.png"))
+  this->texture.loadFromFile("Assets/Player.png");
+  if (!texture.loadFromFile("Assets/Player.png"))
   {
     std::cout << "Error loading player image." << std::endl;
   }
@@ -33,15 +33,15 @@ Player::Player(int _xPos, int _yPos) : MoveableEntity(_xPos, _yPos)
 Player::Player(int _xPos, int _yPos, int damage, int health)
     : MoveableEntity(_xPos, _yPos, damage, health)
 {
-  this->playerSprite.setTexture(playerTexture);
-  if (!playerTexture.loadFromFile("Assets/Player.png"))
+  this->sprite.setTexture(texture);
+  if (!texture.loadFromFile("Assets/Player.png"))
   {
     std::cout << "Error loading player image." << std::endl;
   }
   this->health = 300;
 }
 
-void Player::draw(RenderWindow *window) { window->draw(shape); }
+void Player::draw(RenderWindow *window) { window->draw(sprite); }
 
 bool Player::performAction(Map *map, Clock *keyClock)
 {

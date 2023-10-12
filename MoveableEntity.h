@@ -14,7 +14,6 @@ class MoveableEntity : public Entity {
   bool playerFlag;
 
   int size;  // 42.
-  RectangleShape shape;
 
   int damage;
   int health;
