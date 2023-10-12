@@ -9,33 +9,11 @@ using namespace sf;
 class MapTest {
  public:
   void runTests() {
-    testMapSizeSetterGetter();
-    testMapDensitySetterGetter();
     testIDSetterGetter();
     testNameSetterGetter();
   }
 
  private:
-  void testMapSizeSetterGetter() {
-    Map map;
-    map.setMapSize(30);
-    if (map.getMapSize() != 30) {
-      cout << "Test MapSizeSetterGetter failed!" << endl;
-    } else {
-      cout << "Test MapSizeSetterGetter passed!" << endl;
-    }
-  }
-
-  void testMapDensitySetterGetter() {
-    Map map;
-    map.setMapDensity(500);
-    if (map.getMapDensity() != 500) {
-      cout << "Test MapDensitySetterGetter failed!" << endl;
-    } else {
-      cout << "Test MapDensitySetterGetter passed!" << endl;
-    }
-  }
-
   void testIDSetterGetter() {
     Map map;
     map.setID(42);

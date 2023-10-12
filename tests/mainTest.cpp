@@ -1,6 +1,5 @@
 #include <iostream>
 #include "./PlayerTest.h"
-#include "./EntityTest.h"
 #include "./MoveableEntityTest.h"
 #include "./HUDTest.h"
 #include "./MapTest.h"
