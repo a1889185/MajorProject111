@@ -11,6 +11,7 @@ using namespace sf;
 
 Player::Player() : MoveableEntity()
 {
+  this->playerSprite.setTexture(playerTexture);
   if (!playerTexture.loadFromFile("Assets/Player.png"))
   {
     std::cout << "Error loading player image." << std::endl;
@@ -21,24 +22,23 @@ Player::Player() : MoveableEntity()
 
 Player::Player(int _xPos, int _yPos) : MoveableEntity(_xPos, _yPos)
 {
+  this->playerSprite.setTexture(playerTexture);
   if (!playerTexture.loadFromFile("Assets/Player.png"))
   {
     std::cout << "Error loading player image." << std::endl;
   }
-  this->playerSprite.setTexture(playerTexture);
   this->health = 300;
 }
 
 Player::Player(int _xPos, int _yPos, int damage, int health)
     : MoveableEntity(_xPos, _yPos, damage, health)
 {
+  this->playerSprite.setTexture(playerTexture);
   if (!playerTexture.loadFromFile("Assets/Player.png"))
   {
     std::cout << "Error loading player image." << std::endl;
   }
-  this->playerSprite.setTexture(playerTexture);
   this->health = 300;
-  this->shape.setFillColor(apperance);
 }
 
 void Player::draw(RenderWindow *window) { window->draw(shape); }
