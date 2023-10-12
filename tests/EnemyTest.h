@@ -17,9 +17,9 @@ class EnemyTest {
     Enemy enemy(10, 10);
     enemy.setHealth(80);
     if (enemy.getHealth() != 80) {
-      cout << "Test HealthSetterGetter failed!" << endl;
+      cout << "Test Enemy HealthSetterGetter failed!" << endl;
     } else {
-      cout << "Test HealthSetterGetter passed!" << endl;
+      cout << "Test Enemy HealthSetterGetter passed!" << endl;
     }
   }
 
@@ -27,9 +27,9 @@ class EnemyTest {
     Enemy enemy(10, 10);
     enemy.setDamage(30);
     if (enemy.getDamage() != 30) {
-      cout << "Test DamageSetterGetter failed!" << endl;
+      cout << "Test Enemy DamageSetterGetter failed!" << endl;
     } else {
-      cout << "Test DamageSetterGetter passed!" << endl;
+      cout << "Test Enemy DamageSetterGetter passed!" << endl;
     }
   }
 };
