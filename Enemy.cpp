@@ -2,20 +2,35 @@
 
 #include <SFML/Graphics.hpp>
 #include <cmath>
+#include <iostream>
 
 #include "MoveableEntity.h"
 #include "Player.h"
 
-Enemy::Enemy() : MoveableEntity() {}
-Enemy::Enemy(int _xPos, int _yPos) : MoveableEntity(_xPos, _yPos) {}
-Enemy::Enemy(int _xPos, int _yPos, int damage, int health,
-             sf::Sprite _apperance)
+Enemy::Enemy() : MoveableEntity() {
+  IntRect area = IntRect();
+  if (!texture.loadFromFile("Assets/Enemy.png", area)) {
+    std::cout << "Error loading player image." << std::endl;
+  }
+  this->sprite.setTexture(texture);
+}
+Enemy::Enemy(int _xPos, int _yPos) : MoveableEntity(_xPos, _yPos) {
+  IntRect area = IntRect();
+  if (!texture.loadFromFile("Assets/Enemy.png", area)) {
+    std::cout << "Error loading player image." << std::endl;
+  }
+  this->sprite.setTexture(texture);
+}
+Enemy::Enemy(int _xPos, int _yPos, int damage, int health)
     : MoveableEntity(_xPos, _yPos, damage, health) {
-  this->appearance = _apperance;
-  // this->shape.setTexture(appereance);
+  IntRect area = IntRect();
+  if (!texture.loadFromFile("Assets/Enemy.png", area)) {
+    std::cout << "Error loading player image." << std::endl;
+  }
+  this->sprite.setTexture(texture);
 }
 
-void Enemy::draw(sf::RenderWindow* window) { window->draw(shape); }
+void Enemy::draw(sf::RenderWindow* window) { window->draw(sprite); }
 
 void Enemy::advancePos(Map* map, MoveableEntity* player) {
   int playerXPos = player->getPosX();
