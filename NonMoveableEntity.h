@@ -9,10 +9,7 @@
 class NonMoveableEntity : public Entity {
  protected:
   int size;  // standard unit length.
-<<<<<<< HEAD
-=======
   std::string type;
->>>>>>> c2f2cae5f95135506b436369c480e9e120c58c60
 
  public:
   NonMoveableEntity();
