@@ -102,9 +102,8 @@ void Map::setWalls() {
   for (xIndex = 0; xIndex < mapSize; xIndex++) {
     for (yIndex = 0; yIndex < mapSize; yIndex++) {
       if (mapMatrix[yIndex][xIndex] == 1) {
-        // create new wall of NonMoveableEntity class: x | y | type | apperance
-        allWalls[i] =
-            new NonMoveableEntity(xIndex, yIndex, "Wall", sf::Color::Green);
+        // create new wall of NonMoveableEntity class: x | y | type
+        allWalls[i] = new NonMoveableEntity(xIndex, yIndex, "Wall");
 
         i++;
       }

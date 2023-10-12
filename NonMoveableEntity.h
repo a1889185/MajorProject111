@@ -9,14 +9,18 @@
 class NonMoveableEntity : public Entity {
  protected:
   int size;  // standard unit length.
+<<<<<<< HEAD
+=======
+  std::string type;
+>>>>>>> c2f2cae5f95135506b436369c480e9e120c58c60
 
  public:
   NonMoveableEntity();
   NonMoveableEntity(int x, int y, std::string _type);
-  NonMoveableEntity(int x, int y, std::string _type, sf::Color _apperance);
+  NonMoveableEntity(int x, int y, std::string _type, sf::Texture _texture);
   ~NonMoveableEntity();
 
-  sf::RectangleShape getShape();
+  sf::Sprite getShape();
 
   std::string getType();
   void setType(std::string _type);

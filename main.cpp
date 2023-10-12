@@ -85,8 +85,8 @@ int main() {
       enemies[2] = new Enemy(5, 15);
 
       delete player;
-      // x | y | damage | health | Colour
-      player = new Player(10, 10, 100, 300, Color::Blue);
+      // x | y | damage | health
+      player = new Player(10, 10, 100, 300);
 
       isLevelComplete = false;
     }

@@ -12,12 +12,14 @@ using namespace sf;
 
 class Player : public MoveableEntity {
  private:
-  Color apperance;
+  // Color apperance;
+  // Texture playerTexture;
+  // Sprite playerSprite;
 
  public:
   Player();
   Player(int _xPos, int _yPos);
-  Player(int _xPos, int _yPos, int damage, int health, Color apperance);
+  Player(int _xPos, int _yPos, int damage, int health);
 
   void draw(sf::RenderWindow* window);
 
