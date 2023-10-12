@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "./HUD.h"
+#include "HUD.h"
 using namespace std;
 using namespace sf;
 

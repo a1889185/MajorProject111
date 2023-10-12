@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "./NonMoveableEntity.h"
+#include "NonMoveableEntity.h"
 using namespace std;
 using namespace sf;
 

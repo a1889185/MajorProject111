@@ -1,7 +1,7 @@
 #ifndef ENEMYTEST_H
 #define ENEMYTEST_H
 
-#include "./Enemy.h"
+#include "Enemy.h"
 #include <iostream>
 using namespace std;
 

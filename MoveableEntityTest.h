@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "./MoveableEntity.h"
+#include "MoveableEntity.h"
 using namespace std;
 
 class MoveableEntityTest {
@@ -17,7 +17,7 @@ class MoveableEntityTest {
 
  private:
   void testGetPosX() {
-    MoveableEntity entity(30, 40);
+    MoveableEntity entity(30, 40, 10, 10);
     int posX = entity.getPosX();
     if (posX == 30) {
       cout << "MoveableEntity getPosX Test: Passed" << endl;
@@ -27,7 +27,7 @@ class MoveableEntityTest {
   }
 
   void testGetPosY() {
-    MoveableEntity entity(30, 40);
+    MoveableEntity entity(30, 40, 10, 10);
     int posY = entity.getPosY();
     if (posY == 40) {
       cout << "MoveableEntity getPosY Test: Passed" << endl;
@@ -37,7 +37,7 @@ class MoveableEntityTest {
   }
 
   void testHealthSetterGetter() {
-    MoveableEntity entity(10, 10);
+    MoveableEntity entity(10, 10, 0, 0);
     entity.setHealth(80);
     if (entity.getHealth() != 80) {
       cout << "Test MoveableEntity HealthSetterGetter failed!" << endl;
@@ -47,7 +47,7 @@ class MoveableEntityTest {
   }
 
   void testDamageSetterGetter() {
-    MoveableEntity entity(10, 10);
+    MoveableEntity entity(10, 10, 0, 0);
     entity.setDamage(30);
     if (entity.getDamage() != 30) {
       cout << "Test MoveableEntity DamageSetterGetter failed!" << endl;

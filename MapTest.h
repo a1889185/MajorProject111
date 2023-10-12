@@ -1,7 +1,7 @@
 #ifndef MAPTEST_H
 #define MAPTEST_H
 
-#include "./Map.h"
+#include "Map.h"
 #include <iostream>
 using namespace std;
 using namespace sf;
