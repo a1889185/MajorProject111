@@ -10,6 +10,7 @@
 #include "MoveableEntity.h"
 #include "NonMoveableEntity.h"
 #include "Player.h"
+#include "GameMenu.h"
 
 using namespace sf;
 
@@ -39,6 +40,14 @@ int main() {
   // Create HUD instance
   HUD hud;
 
+
+  // Create a GameMenu instance
+  GameMenu gameMenu;
+
+  // Flag to track if the menu is open
+  bool isMenuOpen = false;
+
+
   // MAIN GAME WINDOW LOOP
   Event closeEvent;
   while (window.isOpen()) {
@@ -62,6 +71,9 @@ int main() {
         window.draw(deathScreen);
         window.display();
         sleep(milliseconds(500));
+        
+        isMenuOpen = true;  // Set this flag to open the menu
+
       } else {
         hud.setScore(50);
         hud.setSteps(0);
@@ -72,7 +84,35 @@ int main() {
         window.draw(deathScreen);
         window.display();
         sleep(milliseconds(500));
+
+        isMenuOpen = true;  // Set this flag to open the menu
+
       }
+      // Check if the menu is open
+        if (isMenuOpen) {
+            int menuResult = 0;
+            while (menuResult == 0) {
+                // Clear the window and draw the menu
+                window.clear();
+                gameMenu.draw(window);
+                window.display();
+
+                // Handle input and get the menu option
+                menuResult = gameMenu.handleInput(window);
+            }
+
+            if (menuResult == -1) {
+                window.close();  // Exit the game
+            }
+            else {
+                isMenuOpen = false;  // Close the menu
+            }
+        }
+
+        while (gameMenu.handleInput(window) = false) {
+          if (gameMenu.key.code == sf::Keyboard::M)
+        }
+
       // Generate random map with densisty: 1000=not many paths, 1=allpaths.
       delete map;
       map = new Map(999);
