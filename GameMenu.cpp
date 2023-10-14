@@ -12,7 +12,7 @@ GameMenu::GameMenu() {
   startText.setPosition(400, 240);
 
   pauseText.setFont(font);
-  pauseText.setString("2. Pause/Resume");
+  pauseText.setString("2. Resume");
   pauseText.setCharacterSize(50);
   pauseText.setFillColor(sf::Color::White);
   pauseText.setPosition(400, 360);
@@ -39,12 +39,12 @@ int GameMenu::handleInput(sf::RenderWindow& window) {
 
     if (event.type == sf::Event::KeyReleased) {
       if (event.key.code == sf::Keyboard::M) {
-        // Open the menu when Enter key is pressed
+        // Toggle the menu when "M" key is pressed
         return 0;
       } else if (event.key.code == sf::Keyboard::Num1) {
         return 1;  // Start the game when 1 key is pressed
       } else if (event.key.code == sf::Keyboard::Num2) {
-        return 2;  // Pause/Resume the game when 2 key is pressed
+        return 2;  // Resume the game when 2 key is pressed
       } else if (event.key.code == sf::Keyboard::Num3) {
         return -1;  // Exit the game when 3 key is pressed
       }

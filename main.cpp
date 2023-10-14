@@ -5,12 +5,12 @@
 
 #include "Enemy.h"
 #include "Entity.h"
+#include "GameMenu.h"
 #include "HUD.h"
 #include "Map.h"
 #include "MoveableEntity.h"
 #include "NonMoveableEntity.h"
 #include "Player.h"
-#include "GameMenu.h"
 
 using namespace sf;
 
@@ -40,13 +40,11 @@ int main() {
   // Create HUD instance
   HUD hud;
 
-
   // Create a GameMenu instance
   GameMenu gameMenu;
 
   // Flag to track if the menu is open
   bool isMenuOpen = false;
-
 
   // MAIN GAME WINDOW LOOP
   Event closeEvent;
@@ -71,8 +69,8 @@ int main() {
         window.draw(deathScreen);
         window.display();
         sleep(milliseconds(500));
-        
-        isMenuOpen = true;  // Set this flag to open the menu
+
+        isMenuOpen = true;  // Set this flag to open the menu upon starting new game
 
       } else {
         hud.setScore(50);
@@ -85,33 +83,26 @@ int main() {
         window.display();
         sleep(milliseconds(500));
 
-        isMenuOpen = true;  // Set this flag to open the menu
-
+        isMenuOpen = true;  // Set this flag to open the menu upon starting new game
       }
+
       // Check if the menu is open
-        if (isMenuOpen) {
-            int menuResult = 0;
-            while (menuResult == 0) {
-                // Clear the window and draw the menu
-                window.clear();
-                gameMenu.draw(window);
-                window.display();
+      if (isMenuOpen) {
+        int menuResult = 0;
+        while (menuResult == 0) {
+          // Clear the window and draw the menu
+          window.clear();
+          gameMenu.draw(window);
+          window.display();
 
-                // Handle input and get the menu option
-                menuResult = gameMenu.handleInput(window);
-            }
-
-            if (menuResult == -1) {
-                window.close();  // Exit the game
-            }
-            else {
-                isMenuOpen = false;  // Close the menu
-            }
+          // Handle input and get the menu option
+          menuResult = gameMenu.handleInput(window);
         }
 
-        while (gameMenu.handleInput(window) = false) {
-          if (gameMenu.key.code == sf::Keyboard::M)
+        if (menuResult == -1) {
+          window.close();  // Exit the game
         }
+      }
 
       // Generate random map with densisty: 1000=not many paths, 1=allpaths.
       delete map;
