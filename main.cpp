@@ -88,7 +88,7 @@ int main() {
     // Update player.
     hasPlayerMoved = player->performAction(map, &keyClock, enemies, numEnemies);
 
-    // Move enemys if player moved.
+    // Move enemys only if player moved.
     if (hasPlayerMoved) {
       score--;
       steps++;
