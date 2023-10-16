@@ -130,6 +130,11 @@ int main() {
     window.display();
 
   }  // END MAIN GAME LOOP
-
+  delete player;
+  delete map;
+  for (int i = 0; i < numEnemies; i++) {
+    delete enemies[i];
+  }
+  delete[] enemies;
   return 0;
 }
