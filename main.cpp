@@ -29,7 +29,6 @@ int main() {
 
   RectangleShape deathScreen(Vector2f(42 * 20, 42 * 20));
   Color color1;
-  color1.a = 100;
 
   int playerHealth = 300, numEnemies = 3, currentNumEnemies = 3, score, steps;
   Player* player = new Player(10, 10, 100, playerHealth);
@@ -52,12 +51,14 @@ int main() {
 
       if (playerWonLevel) {
         color1 = Color::Green;
+        color1.a = 100;
         deathScreen.setFillColor(color1);
         window.draw(deathScreen);
         window.display();
         sleep(milliseconds(500));
       } else {
         color1 = Color::Red;
+        color1.a = 100;
         deathScreen.setFillColor(color1);
         window.draw(deathScreen);
         window.display();
