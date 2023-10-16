@@ -24,6 +24,9 @@ class HUD {
   int score;
   int stepsCount;
 
+  sf::Texture enemyTexture;
+  sf::Sprite enemySprite;
+
   // read write to txt file.
   static vector_scores scores;
 

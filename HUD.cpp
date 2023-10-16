@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <ctime>
 #include <fstream>
+#include <iostream>
 #include <vector>
 
 typedef std::vector<ScoreData> vector_scores;
@@ -37,6 +38,13 @@ HUD::HUD() {
   stepsCountText.setFillColor(sf::Color::White);
   stepsCountText.setOutlineColor(sf::Color::White);
   stepsCountText.setPosition(841, 320);
+
+  // Load enemy sprite.
+  sf::IntRect area = sf::IntRect();
+  if (!enemyTexture.loadFromFile("Assets/Enemy.png", area)) {
+    std::cout << "Error loading enemy image." << std::endl;
+  }
+  this->enemySprite.setTexture(enemyTexture);
 
   health = 300;    // Initial health
   enemies = 3;     // Initial enemies
@@ -92,12 +100,13 @@ void HUD::draw(sf::RenderWindow* window) {
 
   // Draw three vertical lines for enemies
   for (int i = 0; i < enemies; i++) {
-    sf::RectangleShape enemyLifeLine(
-        sf::Vector2f(5, 30));                    // Adjust size as needed
-    enemyLifeLine.setFillColor(sf::Color::Red);  // Adjust color as needed
-    enemyLifeLine.setPosition(842 + i * 15,
-                              180);  // Adjust position and spacing as needed
-    window->draw(enemyLifeLine);
+    // sf::RectangleShape enemyLifeLine(
+    //     sf::Vector2f(5, 30));                    // Adjust size as needed
+    enemySprite.setPosition(sf::Vector2f(842 + i * 50, 180));
+    // enemyLifeLine.setFillColor(sf::Color::Red);  // Adjust color as needed
+    // enemyLifeLine.setPosition(842 + i * 15,
+    // 180);  // Adjust position and spacing as needed
+    window->draw(enemySprite);
   }
 }
 

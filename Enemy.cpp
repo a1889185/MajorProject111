@@ -8,24 +8,24 @@
 #include "Player.h"
 
 Enemy::Enemy() : MoveableEntity() {
-  IntRect area = IntRect();
+  sf::IntRect area = sf::IntRect();
   if (!texture.loadFromFile("Assets/Enemy.png", area)) {
-    std::cout << "Error loading player image." << std::endl;
+    std::cout << "Error loading enemy image." << std::endl;
   }
   this->sprite.setTexture(texture);
 }
 Enemy::Enemy(int _xPos, int _yPos) : MoveableEntity(_xPos, _yPos) {
-  IntRect area = IntRect();
+  sf::IntRect area = sf::IntRect();
   if (!texture.loadFromFile("Assets/Enemy.png", area)) {
-    std::cout << "Error loading player image." << std::endl;
+    std::cout << "Error loading enemy image." << std::endl;
   }
   this->sprite.setTexture(texture);
 }
 Enemy::Enemy(int _xPos, int _yPos, int damage, int health)
     : MoveableEntity(_xPos, _yPos, damage, health) {
-  IntRect area = IntRect();
+  sf::IntRect area = sf::IntRect();
   if (!texture.loadFromFile("Assets/Enemy.png", area)) {
-    std::cout << "Error loading player image." << std::endl;
+    std::cout << "Error loading enemy image." << std::endl;
   }
   this->sprite.setTexture(texture);
 }
