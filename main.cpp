@@ -30,6 +30,7 @@ int main() {
 
   RectangleShape deathScreen(Vector2f(42 * 20, 42 * 20));
   Color color1;
+  color1.a = 100;
 
   int playerHealth = 300, numEnemies = 3, currentNumEnemies = 3, score, steps;
   Player* player = new Player(10, 10, 100, playerHealth);
@@ -57,47 +58,34 @@ int main() {
     if (isLevelComplete) {
       hud.writeToFile("ScoreRecord.txt");  // add score to file.
 
+      // Death Screen
       if (playerWonLevel) {
         color1 = Color::Green;
-        color1.a = 100;
-        deathScreen.setFillColor(color1);
-        window.draw(deathScreen);
-        window.display();
-        sleep(milliseconds(500));
-
-        isMenuOpen = true;  // Set this flag to open the menu upon starting new game
-
       } else {
         color1 = Color::Red;
-        color1.a = 100;
-        deathScreen.setFillColor(color1);
-        window.draw(deathScreen);
+      }
+      deathScreen.setFillColor(color1);
+      window.draw(deathScreen);
+      window.display();
+      sleep(milliseconds(500));
+
+      // Menu.
+      int menuResult = 0;
+      while (menuResult == 0) {
+        // Clear the window and draw the menu
+        window.clear();
+        gameMenu.draw(window);
         window.display();
-        sleep(milliseconds(500));
 
-        isMenuOpen = true;  // Set this flag to open the menu upon starting new game
+        // Handle input and get the menu option
+        menuResult = gameMenu.handleInput(window);
+      }
+      if (menuResult == -1) {
+        window.close();  // Exit the game
       }
 
-      // Check if the menu is open
-      if (isMenuOpen) {
-        int menuResult = 0;
-        while (menuResult == 0) {
-          // Clear the window and draw the menu
-          window.clear();
-          gameMenu.draw(window);
-          window.display();
-
-          // Handle input and get the menu option
-          menuResult = gameMenu.handleInput(window);
-        }
-
-        if (menuResult == -1) {
-          window.close();  // Exit the game
-        }
-      }
-      
+      // Generate random map.
       delete map;
-      // Generate random map with densisty: 1000=not many paths, 1=allpaths.
       map = new Map(999);  // 1000 = less paths, 1 = more paths.
 
       delete[] enemies;  // deallocate the enemies array
@@ -162,11 +150,13 @@ int main() {
     window.display();
 
   }  // END MAIN GAME LOOP
+
   delete player;
   delete map;
   for (int i = 0; i < numEnemies; i++) {
     delete enemies[i];
   }
   delete[] enemies;
+
   return 0;
 }
