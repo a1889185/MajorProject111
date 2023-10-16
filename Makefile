@@ -9,9 +9,9 @@ BensVersion: main.cpp Entity.cpp NonMoveableEntity.cpp MoveableEntity.cpp Player
 	\-I"/usr/local/Homebrew/Cellar/sfml/2.6.0/include" -L"/usr/local/Homebrew/Cellar/sfml/2.6.0/lib" -lsfml-graphics -lsfml-window -lsfml-system; \
 	\./main; \
 
-KostasVersion: main.cpp Entity.cpp NonMoveableEntity.cpp MoveableEntity.cpp Player.cpp Map.cpp Enemy.cpp HUD.cpp
+KostasVersion: main.cpp Entity.cpp NonMoveableEntity.cpp MoveableEntity.cpp Player.cpp Map.cpp Enemy.cpp HUD.cpp GameMenu.cpp
 
-	clang++ main.cpp Entity.cpp NonMoveableEntity.cpp MoveableEntity.cpp Player.cpp Map.cpp Enemy.cpp HUD.cpp \
+	clang++ main.cpp Entity.cpp NonMoveableEntity.cpp MoveableEntity.cpp Player.cpp Map.cpp Enemy.cpp HUD.cpp GameMenu.cpp \
 	\-o main \
 	\-I"/opt/homebrew/Cellar/sfml/2.6.0/include" -L"/opt/homebrew/Cellar/sfml/2.6.0/lib" -lsfml-graphics -lsfml-window -lsfml-system; \
 	\./main; \

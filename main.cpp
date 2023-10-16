@@ -5,6 +5,7 @@
 
 #include "Enemy.h"
 #include "Entity.h"
+#include "GameMenu.h"
 #include "HUD.h"
 #include "Map.h"
 #include "MoveableEntity.h"
@@ -36,7 +37,14 @@ int main() {
   Map* map;
   HUD hud;
 
+  // Create a GameMenu instance
+  GameMenu gameMenu;
+
+  // Flag to track if the menu is open
+  bool isMenuOpen = false;
+
   // ------------- MAIN GAME WINDOW LOOP -------------
+
   Event closeEvent;
   while (window.isOpen()) {
     while (window.pollEvent(closeEvent)) {
@@ -56,6 +64,9 @@ int main() {
         window.draw(deathScreen);
         window.display();
         sleep(milliseconds(500));
+
+        isMenuOpen = true;  // Set this flag to open the menu upon starting new game
+
       } else {
         color1 = Color::Red;
         color1.a = 100;
@@ -63,9 +74,30 @@ int main() {
         window.draw(deathScreen);
         window.display();
         sleep(milliseconds(500));
+
+        isMenuOpen = true;  // Set this flag to open the menu upon starting new game
       }
 
+      // Check if the menu is open
+      if (isMenuOpen) {
+        int menuResult = 0;
+        while (menuResult == 0) {
+          // Clear the window and draw the menu
+          window.clear();
+          gameMenu.draw(window);
+          window.display();
+
+          // Handle input and get the menu option
+          menuResult = gameMenu.handleInput(window);
+        }
+
+        if (menuResult == -1) {
+          window.close();  // Exit the game
+        }
+      }
+      
       delete map;
+      // Generate random map with densisty: 1000=not many paths, 1=allpaths.
       map = new Map(999);  // 1000 = less paths, 1 = more paths.
 
       delete[] enemies;  // deallocate the enemies array
