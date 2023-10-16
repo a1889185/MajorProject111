@@ -25,17 +25,13 @@ int main() {
   Clock keyClock;  // for setting a delay between keypresses.
   RenderWindow window(VideoMode(totalWidth, windowSize), "Rogue");
 
-  bool isLevelComplete = true;
-  bool playerWonLevel = true;
-  bool hasPlayerMoved = false;
+  bool isLevelComplete = true, playerWonLevel = true, hasPlayerMoved = false;
 
   RectangleShape deathScreen(Vector2f(42 * 20, 42 * 20));
   Color color1;
   color1.a = 100;
 
-  int playerHealth = 300;
-  int numEnemies = 3, currentNumEnemies = 3;
-  int score, steps;
+  int playerHealth = 300, numEnemies = 3, currentNumEnemies = 3, score, steps;
   Player* player = new Player(10, 10, 100, playerHealth);
   MoveableEntity** enemies = new MoveableEntity*[numEnemies];
   Map* map;
@@ -71,9 +67,8 @@ int main() {
       delete map;
       map = new Map(999);  // 1000 = less paths, 1 = more paths.
 
-      delete enemies[0];
-      delete enemies[1];
-      delete enemies[2];
+      delete[] enemies;  // deallocate the enemies array
+      enemies = new MoveableEntity*[numEnemies];
       enemies[0] = new Enemy(5, 5);
       enemies[1] = new Enemy(15, 15);
       enemies[2] = new Enemy(5, 15);
@@ -112,7 +107,7 @@ int main() {
 
     // check if all enemies are dead and if level is complete.
     playerWonLevel = true;
-    for (i = 0; i < 3; i++) {
+    for (i = 0; i < numEnemies; i++) {
       if (enemies[i]->getHealth() != 0) {
         playerWonLevel = false;
       }
@@ -126,7 +121,7 @@ int main() {
     map->draw(&window);
     hud.draw(&window);
     player->draw(&window);
-    for (i = 0; i < 3; i++) {
+    for (i = 0; i < numEnemies; i++) {
       if (enemies[i]->getHealth() != 0) {
         enemies[i]->draw(&window);
       }
