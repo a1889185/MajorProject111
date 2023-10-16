@@ -30,9 +30,8 @@ int main() {
 
   RectangleShape deathScreen(Vector2f(42 * 20, 42 * 20));
   Color color1;
-  color1.a = 100;
 
-  int playerHealth = 300, numEnemies = 3, currentNumEnemies = 3, score, steps;
+  int playerHealth = 300, numEnemies = 4, currentNumEnemies = 4, score, steps;
   Player* player = new Player(10, 10, 100, playerHealth);
   MoveableEntity** enemies = new MoveableEntity*[numEnemies];
   Map* map;
@@ -61,8 +60,10 @@ int main() {
       // Death Screen
       if (playerWonLevel) {
         color1 = Color::Green;
+        color1.a = 100;
       } else {
         color1 = Color::Red;
+        color1.a = 100;
       }
       deathScreen.setFillColor(color1);
       window.draw(deathScreen);
@@ -86,20 +87,21 @@ int main() {
 
       // Generate random map.
       delete map;
-      map = new Map(999);  // 1000 = less paths, 1 = more paths.
+      map = new Map(1000);  // 1000 = less paths, 1 = more paths.
 
       delete[] enemies;  // deallocate the enemies array
       enemies = new MoveableEntity*[numEnemies];
       enemies[0] = new Enemy(5, 5);
       enemies[1] = new Enemy(15, 15);
       enemies[2] = new Enemy(5, 15);
+      enemies[3] = new Enemy(15, 5);
 
       delete player;
       player = new Player(10, 10, 100, playerHealth);
 
       score = 50;
       steps = 0;
-      currentNumEnemies = 3;
+      currentNumEnemies = numEnemies;
       hud.updateStats(playerHealth, currentNumEnemies, score, steps);
 
       isLevelComplete = false;
@@ -153,7 +155,7 @@ int main() {
 
   delete player;
   delete map;
-  for (int i = 0; i < numEnemies; i++) {
+  for (i = 0; i < numEnemies; i++) {
     delete enemies[i];
   }
   delete[] enemies;

@@ -90,6 +90,13 @@ int** Map::generateMap() {
     mazeCreator1.move(randDirection, &_mapMatrix, this->mapSize,
                       this->mapDensity);
   }
+
+  // Leave traces for enemies to spawn in.
+  _mapMatrix[5][5] = 0;
+  _mapMatrix[15][15] = 0;
+  _mapMatrix[15][5] = 0;
+  _mapMatrix[5][15] = 0;
+
   return _mapMatrix;
 }
 

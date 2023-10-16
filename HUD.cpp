@@ -47,7 +47,7 @@ HUD::HUD() {
   this->enemySprite.setTexture(enemyTexture);
 
   health = 300;    // Initial health
-  enemies = 3;     // Initial enemies
+  enemies = 4;     // Initial enemies
   score = 50;      // Initial score
   stepsCount = 0;  // Initial steps count
 }
@@ -72,10 +72,10 @@ void HUD::loseEnemy() {
 
 void HUD::updateStats(int newHealth, int newEnemies, int newScore,
                       int newStepsCount) {
-  health = newHealth;
-  enemies = newEnemies;
-  score = newScore;
-  stepsCount = newStepsCount;
+  this->health = newHealth;
+  this->enemies = newEnemies;
+  this->score = newScore;
+  this->stepsCount = newStepsCount;
 
   // Update the text
   healthText.setString("Health: ");
