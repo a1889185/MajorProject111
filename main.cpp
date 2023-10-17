@@ -36,12 +36,7 @@ int main() {
   MoveableEntity** enemies = new MoveableEntity*[numEnemies];
   Map* map;
   HUD hud;
-
-  // Create a GameMenu instance
   GameMenu gameMenu;
-
-  // Flag to track if the menu is open
-  bool isMenuOpen = false;
 
   // ------------- MAIN GAME WINDOW LOOP -------------
 
@@ -87,7 +82,7 @@ int main() {
 
       // Generate random map.
       delete map;
-      map = new Map(1000);  // 1000 = less paths, 1 = more paths.
+      map = new Map(500);  // 1000 = less paths, 1 = more paths.
 
       delete[] enemies;  // deallocate the enemies array
       enemies = new MoveableEntity*[numEnemies];

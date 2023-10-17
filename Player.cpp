@@ -1,6 +1,8 @@
 #include "Player.h"
 
 #include <SFML/Graphics.hpp>
+#include <filesystem>
+#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -11,7 +13,7 @@ using namespace sf;
 
 Player::Player() : MoveableEntity() {
   IntRect area = IntRect();
-  if (!texture.loadFromFile("Assets/Player.png", area)) {
+  if (!texture.loadFromFile("./Assets/Player.png", area)) {
     std::cout << "Error loading player image." << std::endl;
   }
   this->sprite.setTexture(texture);
@@ -20,7 +22,7 @@ Player::Player() : MoveableEntity() {
 
 Player::Player(int _xPos, int _yPos) : MoveableEntity(_xPos, _yPos) {
   IntRect area = IntRect();
-  if (!texture.loadFromFile("Assets/Player.png", area)) {
+  if (!texture.loadFromFile("./Assets/Player.png", area)) {
     std::cout << "Error loading player image." << std::endl;
   }
   this->sprite.setTexture(texture);
@@ -30,7 +32,8 @@ Player::Player(int _xPos, int _yPos) : MoveableEntity(_xPos, _yPos) {
 Player::Player(int _xPos, int _yPos, int damage, int health)
     : MoveableEntity(_xPos, _yPos, damage, health) {
   IntRect area = IntRect();
-  if (!texture.loadFromFile("Assets/Player.png", area)) {
+
+  if (!texture.loadFromFile("./Assets/Player.png", area)) {
     std::cout << "Error loading player image." << std::endl;
   }
   this->sprite.setTexture(texture);
