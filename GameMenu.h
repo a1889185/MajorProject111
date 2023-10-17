@@ -9,6 +9,19 @@ class GameMenu {
   sf::Text startText;
   sf::Text pauseText;
   sf::Text exitText;
+  sf::Text controlsText;
+  sf::Text controlsInstructionsText;
+  sf::Text gameplayInstructionsText;
+  sf::Text gameplayDescriptionText;
+
+  sf::Text playerDescriptionText;
+  sf::Text enemyDescriptionText;
+
+  sf::Texture playerTexture;
+  sf::Sprite playerSprite;
+
+  sf::Texture enemyTexture;
+  sf::Sprite enemySprite;
 
  public:
   GameMenu();
