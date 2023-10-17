@@ -1,5 +1,13 @@
 #include "HUD.h"
 
+#include <SFML/Graphics.hpp>
+#include <ctime>
+#include <fstream>
+#include <iostream>
+#include <vector>
+
+typedef std::vector<ScoreData> vector_scores;
+
 HUD::HUD() {
   // Load the font
   if (!font.loadFromFile("Assets/PixelifySans-VariableFont_wght.ttf")) {
@@ -31,8 +39,15 @@ HUD::HUD() {
   stepsCountText.setOutlineColor(sf::Color::White);
   stepsCountText.setPosition(841, 320);
 
+  // Load enemy sprite.
+  sf::IntRect area = sf::IntRect();
+  if (!enemyTexture.loadFromFile("Assets/Enemy.png", area)) {
+    std::cout << "Error loading enemy image." << std::endl;
+  }
+  this->enemySprite.setTexture(enemyTexture);
+
   health = 300;    // Initial health
-  enemies = 3;     // Initial enemies
+  enemies = 4;     // Initial enemies
   score = 50;      // Initial score
   stepsCount = 0;  // Initial steps count
 }
@@ -57,10 +72,10 @@ void HUD::loseEnemy() {
 
 void HUD::updateStats(int newHealth, int newEnemies, int newScore,
                       int newStepsCount) {
-  health = newHealth;
-  enemies = newEnemies;
-  score = newScore;
-  stepsCount = newStepsCount;
+  this->health = newHealth;
+  this->enemies = newEnemies;
+  this->score = newScore;
+  this->stepsCount = newStepsCount;
 
   // Update the text
   healthText.setString("Health: ");
@@ -85,11 +100,32 @@ void HUD::draw(sf::RenderWindow* window) {
 
   // Draw three vertical lines for enemies
   for (int i = 0; i < enemies; i++) {
-    sf::RectangleShape enemyLifeLine(
-        sf::Vector2f(5, 30));                    // Adjust size as needed
-    enemyLifeLine.setFillColor(sf::Color::Red);  // Adjust color as needed
-    enemyLifeLine.setPosition(842 + i * 15,
-                              180);  // Adjust position and spacing as needed
-    window->draw(enemyLifeLine);
+    // sf::RectangleShape enemyLifeLine(
+    //     sf::Vector2f(5, 30));                    // Adjust size as needed
+    enemySprite.setPosition(sf::Vector2f(842 + i * 50, 180));
+    // enemyLifeLine.setFillColor(sf::Color::Red);  // Adjust color as needed
+    // enemyLifeLine.setPosition(842 + i * 15,
+    // 180);  // Adjust position and spacing as needed
+    window->draw(enemySprite);
   }
+}
+
+void HUD::writeToFile(std::string filename) {
+  ScoreData sd1;                          // Score to write to txt.
+  std::time_t time = std::time(nullptr);  // Add time of score.
+  std::tm* timeInfo = std::localtime(&time);
+  std::strftime(sd1.timeString, sizeof(sd1.timeString), "%Y-%m-%d %H:%M:%S",
+                timeInfo);
+  sd1._score = this->score;
+
+  // Add score to static scores vector.
+  // HUD::scores.push_back(sd1);
+  std::ofstream ScoreRecord(filename, std::ios::app);
+
+  // vector_scores::iterator itr;
+
+  ScoreRecord << "A score of " << sd1._score << " was achieved on "
+              << sd1.timeString << std::endl;
+
+  ScoreRecord.close();
 }

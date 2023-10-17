@@ -8,6 +8,9 @@ class Entity {
   int xPos;
   int yPos;
 
+  sf::Texture texture;
+  sf::Sprite sprite;
+
  public:
   Entity();
   Entity(int _xPos, int _yPos);

@@ -1,6 +1,7 @@
 #include "MoveableEntity.h"
 
 #include <string>
+#include <iostream>
 
 #include "Entity.h"
 #include "Map.h"
@@ -10,37 +11,28 @@ MoveableEntity::MoveableEntity() : Entity::Entity() {
   this->damage = 100;
   this->health = 100;
   this->size = 42;
-  this->shape.setSize(sf::Vector2f(size, size));
-  this->shape.setFillColor(sf::Color::Red);
-  this->shape.setPosition(sf::Vector2f(xPos, yPos));
 }
 MoveableEntity::MoveableEntity(int _xPos, int _yPos)
     : Entity::Entity(_xPos, _yPos) {
   this->damage = 100;
   this->health = 100;
   this->size = 42;
-  this->shape.setSize(sf::Vector2f(size, size));
-  this->shape.setFillColor(sf::Color::Red);
-  this->shape.setPosition(sf::Vector2f(xPos * 42, yPos * 42));
 }
 MoveableEntity::MoveableEntity(int _xPos, int _yPos, int damage, int health)
     : Entity::Entity(_xPos, _yPos), damage(damage), health(health) {
   this->size = 42;
-  this->shape.setSize(sf::Vector2f(size, size));
-  this->shape.setFillColor(sf::Color::Red);
-  this->shape.setPosition(sf::Vector2f(xPos * 42, yPos * 42));
 }
 
 // methods.
 void MoveableEntity::setPosX(int _xPos) {
   this->xPos = _xPos;
-  // update shape postion which is matrix postion * unit (42).
-  this->shape.setPosition(sf::Vector2f(xPos * 42, yPos * 42));
+  // update sprite postion which is matrix postion * unit (42).
+  this->sprite.setPosition(sf::Vector2f(xPos * 42, yPos * 42));
 }
 void MoveableEntity::setPosY(int _yPos) {
   this->yPos = _yPos;
-  // update shape postion which is matrix postion * unit (42).
-  this->shape.setPosition(sf::Vector2f(xPos * 42, yPos * 42));
+  // update sprite postion which is matrix postion * unit (42).
+  this->sprite.setPosition(sf::Vector2f(xPos * 42, yPos * 42));
 }
 
 void MoveableEntity::setHealth(int _health) { this->health = _health; }
@@ -52,7 +44,7 @@ int MoveableEntity::getDamage() { return damage; }
 int MoveableEntity::getPosX() { return xPos; }
 int MoveableEntity::getPosY() { return yPos; }
 
-void MoveableEntity::draw(sf::RenderWindow* window) { window->draw(shape); }
+void MoveableEntity::draw(sf::RenderWindow* window) { window->draw(sprite); }
 
 void MoveableEntity::attackOpponent(MoveableEntity* opponent) {
   if (opponent != nullptr) {

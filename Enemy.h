@@ -8,18 +8,13 @@
 #include "MoveableEntity.h"
 #include "Player.h"
 
-using namespace sf;
-
 class Enemy : public MoveableEntity {
- private:
-  Sprite appearance;
-
  public:
   Enemy();
   Enemy(int _xPos, int _yPos);
-  Enemy(int _xPos, int _yPos, int damage, int health, Sprite apperance);
+  Enemy(int _xPos, int _yPos, int damage, int health);
 
-  void draw(RenderWindow* window);
+  void draw(sf::RenderWindow* window);
 
   void advancePos(Map* map, MoveableEntity* player);
 };

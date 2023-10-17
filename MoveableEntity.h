@@ -7,14 +7,11 @@
 #include "Entity.h"
 #include "Map.h"
 
-using namespace sf;
-
 class MoveableEntity : public Entity {
  protected:
   bool playerFlag;
 
   int size;  // 42.
-  RectangleShape shape;
 
   int damage;
   int health;
@@ -38,7 +35,7 @@ class MoveableEntity : public Entity {
   int getPosX();
   int getPosY();
 
-  void draw(RenderWindow* window);
+  void draw(sf::RenderWindow* window);
 
   virtual bool performAction(Map* map, sf::Clock* keyClock,
                              MoveableEntity** enemies, int numEnemies);

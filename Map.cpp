@@ -90,6 +90,13 @@ int** Map::generateMap() {
     mazeCreator1.move(randDirection, &_mapMatrix, this->mapSize,
                       this->mapDensity);
   }
+
+  // Leave traces for enemies to spawn in.
+  _mapMatrix[5][5] = 0;
+  _mapMatrix[15][15] = 0;
+  _mapMatrix[15][5] = 0;
+  _mapMatrix[5][15] = 0;
+
   return _mapMatrix;
 }
 
@@ -102,9 +109,8 @@ void Map::setWalls() {
   for (xIndex = 0; xIndex < mapSize; xIndex++) {
     for (yIndex = 0; yIndex < mapSize; yIndex++) {
       if (mapMatrix[yIndex][xIndex] == 1) {
-        // create new wall of NonMoveableEntity class: x | y | type | apperance
-        allWalls[i] =
-            new NonMoveableEntity(xIndex, yIndex, "Wall", sf::Color::Green);
+        // create new wall of NonMoveableEntity class: x | y | type
+        allWalls[i] = new NonMoveableEntity(xIndex, yIndex, "Wall");
 
         i++;
       }
