@@ -51,7 +51,7 @@ GameMenu::GameMenu() {
       "they lose a life.\n"
       "If the player loses all lives, the game ends.\n"
       "To attack an enemy, the player must move into the space they occupy.\n"
-      "Beware of moving near enemies as it may cost a life.");
+      "Beware of moving near enemies as if you move into a spce where an enemy will move on their next turn it will cost a life.");
   gameplayDescriptionText.setCharacterSize(20);
   gameplayDescriptionText.setFillColor(sf::Color::White);
   gameplayDescriptionText.setPosition(25, 160);
