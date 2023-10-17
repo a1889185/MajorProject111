@@ -124,7 +124,7 @@ void HUD::writeToFile(std::string filename) {
 
   // vector_scores::iterator itr;
 
-  ScoreRecord << "A score of " << sd1._score << " was acheived on "
+  ScoreRecord << "A score of " << sd1._score << " was achieved on "
               << sd1.timeString << std::endl;
 
   ScoreRecord.close();
