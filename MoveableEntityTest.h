@@ -2,8 +2,8 @@
 #define MOVEABLEENTITYTEST_H
 
 #include <iostream>
-
 #include "MoveableEntity.h"
+
 using namespace std;
 
 class MoveableEntityTest {
@@ -20,9 +20,9 @@ class MoveableEntityTest {
     MoveableEntity entity(30, 40, 10, 10);
     int posX = entity.getPosX();
     if (posX == 30) {
-      cout << "Test MoveableEntity getPosX passed!" << endl;
+      cout << "Passed MoveableEntity getPosX Test!" << endl;
     } else {
-      cout << "Test MoveableEntity getPosX failed!" << endl;
+      cout << "Failed MoveableEntity getPosX Test!" << endl;
     }
   }
 
@@ -30,9 +30,9 @@ class MoveableEntityTest {
     MoveableEntity entity(30, 40, 10, 10);
     int posY = entity.getPosY();
     if (posY == 40) {
-      cout << "Test MoveableEntity getPosY passed!" << endl;
+      cout << "Passed MoveableEntity getPosY Test!" << endl;
     } else {
-      cout << "Test MoveableEntity getPosY failed!" << endl;
+      cout << "Failed MoveableEntity getPosY Test!" << endl;
     }
   }
 
@@ -40,9 +40,9 @@ class MoveableEntityTest {
     MoveableEntity entity(10, 10, 0, 0);
     entity.setHealth(80);
     if (entity.getHealth() != 80) {
-      cout << "Test MoveableEntity HealthSetterGetter failed!" << endl;
+      cout << "Failed MoveableEntity HealthSetterGetter Test!" << endl;
     } else {
-      cout << "Test MoveableEntity HealthSetterGetter passed!" << endl;
+      cout << "Passed MoveableEntity HealthSetterGetter Test!" << endl;
     }
   }
 
@@ -50,9 +50,9 @@ class MoveableEntityTest {
     MoveableEntity entity(10, 10, 0, 0);
     entity.setDamage(30);
     if (entity.getDamage() != 30) {
-      cout << "Test MoveableEntity DamageSetterGetter failed!" << endl;
+      cout << "Failed MoveableEntity DamageSetterGetter Test!" << endl;
     } else {
-      cout << "Test MoveableEntity DamageSetterGetter passed!" << endl;
+      cout << "Passed MoveableEntity DamageSetterGetter Test!" << endl;
     }
   }
 };

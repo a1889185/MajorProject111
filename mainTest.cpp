@@ -13,8 +13,8 @@ int main() {
   MoveableEntityTest moveableEntityTest;
   moveableEntityTest.runTests();
 
-  // NonMoveableEntityTest nonMoveableEntityTest;
-  // nonMoveableEntityTest.runTests();
+  NonMoveableEntityTest nonMoveableEntityTest;
+  nonMoveableEntityTest.runTests();
 
   MapTest mapTest;
   mapTest.runTests();

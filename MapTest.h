@@ -18,9 +18,9 @@ class MapTest {
     Map map;
     map.setID(42);
     if (map.getID() != 42) {
-      cout << "Test Map IDSetterGetter failed!" << endl;
+      cout << "Failed Map IDSetterGetter Test!" << endl;
     } else {
-      cout << "Test Map IDSetterGetter passed!" << endl;
+      cout << "Passed Map IDSetterGetter Test!" << endl;
     }
   }
 
@@ -28,9 +28,9 @@ class MapTest {
     Map map;
     map.setName("TestMap");
     if (map.getName() != "TestMap") {
-      cout << "Test Map NameSetterGetter failed!" << endl;
+      cout << "Failed Map NameSetterGetter Test!" << endl;
     } else {
-      cout << "Test Map NameSetterGetter passed!" << endl;
+      cout << "Passed Map NameSetterGetter Test!" << endl;
     }
   }
 };

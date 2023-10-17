@@ -3,6 +3,7 @@
 
 #include "Enemy.h"
 #include <iostream>
+
 using namespace std;
 
 class EnemyTest {
@@ -17,9 +18,9 @@ class EnemyTest {
     Enemy enemy(10, 10);
     enemy.setHealth(80);
     if (enemy.getHealth() != 80) {
-      cout << "Test Enemy HealthSetterGetter failed!" << endl;
+      cout << "Failed Enemy HealthSetterGetter Test!" << endl;
     } else {
-      cout << "Test Enemy HealthSetterGetter passed!" << endl;
+      cout << "Passed Enemy HealthSetterGetter Test!" << endl;
     }
   }
 
@@ -27,9 +28,9 @@ class EnemyTest {
     Enemy enemy(10, 10);
     enemy.setDamage(30);
     if (enemy.getDamage() != 30) {
-      cout << "Test Enemy DamageSetterGetter failed!" << endl;
+      cout << "Failed Enemy DamageSetterGetter Test!" << endl;
     } else {
-      cout << "Test Enemy DamageSetterGetter passed!" << endl;
+      cout << "Passed Enemy DamageSetterGetter Test!" << endl;
     }
   }
 };
