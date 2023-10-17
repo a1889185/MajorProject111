@@ -14,6 +14,15 @@ class GameMenu {
   sf::Text gameplayInstructionsText;
   sf::Text gameplayDescriptionText;
 
+  sf::Text playerDescriptionText;
+  sf::Text enemyDescriptionText;
+
+  sf::Texture playerTexture;
+  sf::Sprite playerSprite;
+
+  sf::Texture enemyTexture;
+  sf::Sprite enemySprite;
+
  public:
   GameMenu();
   void draw(sf::RenderWindow& window);

@@ -47,19 +47,49 @@ GameMenu::GameMenu() {
 
   gameplayDescriptionText.setFont(font);
   gameplayDescriptionText.setString(
-      "The player begins with three lives. If an enemy attacks the player, they lose a life.\n"
+      "The player begins with three lives. If an enemy attacks the player, "
+      "they lose a life.\n"
       "If the player loses all lives, the game ends.\n"
       "To attack an enemy, the player must move into the space they occupy.\n"
       "Beware of moving near enemies as it may cost a life.");
   gameplayDescriptionText.setCharacterSize(20);
   gameplayDescriptionText.setFillColor(sf::Color::White);
   gameplayDescriptionText.setPosition(25, 160);
+
+  // Add player description
+  playerDescriptionText.setFont(font);
+  playerDescriptionText.setString("Player:");
+  playerDescriptionText.setCharacterSize(30);
+  playerDescriptionText.setFillColor(sf::Color::White);
+  playerDescriptionText.setPosition(25, 290);
+
+  // Load player image texture
+  if (!playerTexture.loadFromFile("Assets/Player.png")) {
+    // Handle loading error
+  }
+  playerSprite.setTexture(playerTexture);
+  playerSprite.setScale(2.0f, 2.0f);  // Scale image to preference
+  playerSprite.setPosition(25, 340);  // Adjust position as needed
+
+  // Add enemy description
+  enemyDescriptionText.setFont(font);
+  enemyDescriptionText.setString("Enemy:");
+  enemyDescriptionText.setCharacterSize(30);
+  enemyDescriptionText.setFillColor(sf::Color::White);
+  enemyDescriptionText.setPosition(25, 450);
+
+  // Load enemy image texture
+  if (!enemyTexture.loadFromFile("Assets/Enemy.png")) {
+    // Handle loading error
+  }
+  enemySprite.setTexture(enemyTexture);
+  enemySprite.setScale(1.6f, 1.6f);  // Scale image to preference
+  enemySprite.setPosition(25, 500);  // Adjust position as needed
 }
 
 void GameMenu::draw(sf::RenderWindow& window) {
-
-  // Set the background color to dark grey
-  window.clear(sf::Color(50, 50, 50)); // RGB values for dark gray
+  // Set the background color to black
+  window.clear(sf::Color(0, 0, 0));  // RGB values for black
 
   window.draw(startText);
   window.draw(pauseText);
@@ -68,6 +98,12 @@ void GameMenu::draw(sf::RenderWindow& window) {
   window.draw(controlsInstructionsText);
   window.draw(gameplayInstructionsText);
   window.draw(gameplayDescriptionText);
+
+  window.draw(playerDescriptionText);
+  window.draw(enemyDescriptionText);
+
+  window.draw(playerSprite);
+  window.draw(enemySprite);
 }
 
 int GameMenu::handleInput(sf::RenderWindow& window) {
