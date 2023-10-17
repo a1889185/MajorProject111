@@ -28,7 +28,7 @@ class HUD {
   sf::Sprite enemySprite;
 
   // read write to txt file.
-  static vector_scores scores;
+  vector_scores scores;
 
  public:
   HUD();

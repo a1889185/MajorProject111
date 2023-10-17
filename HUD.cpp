@@ -100,14 +100,13 @@ void HUD::draw(sf::RenderWindow* window) {
 
   // Draw three vertical lines for enemies
   for (int i = 0; i < enemies; i++) {
-    // sf::RectangleShape enemyLifeLine(
-    //     sf::Vector2f(5, 30));                    // Adjust size as needed
     enemySprite.setPosition(sf::Vector2f(842 + i * 50, 180));
-    // enemyLifeLine.setFillColor(sf::Color::Red);  // Adjust color as needed
-    // enemyLifeLine.setPosition(842 + i * 15,
-    // 180);  // Adjust position and spacing as needed
     window->draw(enemySprite);
   }
+}
+
+bool compareByScore(const ScoreData& a, const ScoreData& b) {
+  return a._score < b._score;
 }
 
 void HUD::writeToFile(std::string filename) {
@@ -119,13 +118,15 @@ void HUD::writeToFile(std::string filename) {
   sd1._score = this->score;
 
   // Add score to static scores vector.
-  // HUD::scores.push_back(sd1);
-  std::ofstream ScoreRecord(filename, std::ios::app);
+  std::ofstream ScoreRecord(filename, std::ios::out);
+  scores.push_back(sd1);
+  std::sort(scores.begin(), scores.end(), compareByScore);
 
-  // vector_scores::iterator itr;
-
-  ScoreRecord << "A score of " << sd1._score << " was acheived on "
-              << sd1.timeString << std::endl;
+  vector_scores::iterator itr;
+  for (itr = scores.begin(); itr != scores.end(); itr++) {
+    ScoreRecord << "A score of " << itr->_score << " was acheived on "
+                << itr->timeString << std::endl;
+  }
 
   ScoreRecord.close();
 }
