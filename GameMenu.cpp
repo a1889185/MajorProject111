@@ -7,19 +7,19 @@ GameMenu::GameMenu() {
 
   startText.setFont(font);
   startText.setString("1. Start");
-  startText.setCharacterSize(50);
+  startText.setCharacterSize(60);
   startText.setFillColor(sf::Color::Red);
   startText.setPosition(450, 320);
 
   pauseText.setFont(font);
   pauseText.setString("2. Resume");
-  pauseText.setCharacterSize(50);
+  pauseText.setCharacterSize(60);
   pauseText.setFillColor(sf::Color::Red);
   pauseText.setPosition(450, 440);
 
   exitText.setFont(font);
   exitText.setString("3. Exit");
-  exitText.setCharacterSize(50);
+  exitText.setCharacterSize(60);
   exitText.setFillColor(sf::Color::Red);
   exitText.setPosition(450, 560);
 
