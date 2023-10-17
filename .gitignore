@@ -4,6 +4,7 @@ ScoreRecord.txt
 *.a
 *.txt
 ScoreRecord
+mainTest
 
 .vscode/**
 settings.json
