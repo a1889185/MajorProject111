@@ -50,8 +50,8 @@ GameMenu::GameMenu() {
       "The player begins with 3 lives. If an enemy attacks the player, they lose a life.\n"
       "If the player loses all lives, the game ends.\n"
       "To attack an enemy, the player must be orthogonally adjacent and move into the space occupied by the enemy.\n"
-      "For an enemy to attack, the player must be within a space orthogonally adjacent to an enemy.\n"
-      "Beware of moving near enemies, it could cost a life. Goodluck!");
+      "For an enemy to attack, the player must be within or move to a space orthogonally adjacent to that enemy.\n"
+      "Beware of moving near enemies, it could cost a life, consider waiting and letting them move towards you. Goodluck!");
   gameplayDescriptionText.setCharacterSize(20);
   gameplayDescriptionText.setFillColor(sf::Color::White);
   gameplayDescriptionText.setPosition(25, 160);
